@@ -66,7 +66,7 @@ def filelist_view(request):
 
     context["JSON_data"] = JSON_data 
 
-    template = loader.get_template("modellist_view.html")
+    template = loader.get_template("model_list_view.html")
     res = template.render(context,request)
     return HttpResponse(res) 
 
@@ -97,7 +97,7 @@ def JSON_process(data,group_data):
 
 
 
-def file_update(request, pk, template_name='fileupdate.html'):
+def file_update(request, pk, template_name='file_update.html'):
     file= get_object_or_404(Document, pk=pk)
     form = FileForm(request.POST or None, instance=file)
     if form.is_valid():
