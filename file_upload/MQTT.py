@@ -5,7 +5,7 @@ from file_upload.process import data_information
 from .models import Document
 
 
-IP = "192.168.50.199"
+IP = "192.168.1.45"
 PORT = 1883
 
 def MQTT_publisher(dataset):
@@ -15,9 +15,11 @@ def MQTT_publisher(dataset):
     try:
         client = mqtt.Client()
         client.connect(IP, PORT, 60)
+        
         ISOTIMEFORMAT = '%m/%d %H:%M:%S'
         t = datetime.datetime.now().strftime(ISOTIMEFORMAT)
         payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : "http://127.0.0.1:8000" + download_url}
+
         print (json.dumps(payload))
         client.publish("pushnotification", json.dumps(payload))
                 

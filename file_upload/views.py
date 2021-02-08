@@ -91,6 +91,7 @@ def JSON_process(data,group_data):
         for key in JSON_data.keys():
             if key == (process_data[count]['title']):
                 JSON_data[key].append(process_data[count])
+
     return JSON_data
 
 

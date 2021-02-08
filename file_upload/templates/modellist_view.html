@@ -204,8 +204,12 @@ line-height: 34px;
                               <tr>
                                 <td id="demo-{{ value.0.title }}" class="collapse multi-collapse">
                                   {% for i in value%}
+                                    {% if i.version != "1.0.0" %}
+                                      <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}Patch</a>
+                                    {% else %}
+                                      <div>Not Patch</a>
+                                    {% endif %}
 
-                                  <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}Patch</a>
 
                                   {% endfor %} 
                                  </td>
