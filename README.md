@@ -4,8 +4,17 @@
 為了方便設備選擇Model的版本與更新，實現了神經網路模型自動部屬平台，而此平台透過MQTT的方式通知IOT設備更新的訊息，
 同時IOT設備會向Server進行Requset，Server接收後會傳送patch到IOT設備進行自動更新
 ![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/MQTT.png)
+
+- Django(Publisher)：只要上傳model就會發送更新訊息至Client。
+
+- mosquitto(MQTT Broker)：中繼站負責Server與Client溝通橋樑。
+
+- PySide Client(Subscribe)：接收Server發送過來的JSON並更新。
+
+
 ## 運用工具
  - Django開發Server平台
+ - celery異步任務   >>[參考出處](https://github.com/celery/celery)
  - PySide模擬Client端
  - MQTT Mosquitto 扮演著Server與Client橋梁
  - MASK-RCNN遷移式學習   >>[參考出處](https://github.com/TannerGilbert/MaskRCNN-Object-Detection-and-Segmentation)
@@ -123,7 +132,16 @@ App>file_upload>task.py
     python manage.py runserver
     celery -A App worker -l info
     
-    
+Django Server
+
+<br>![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/django_run_server.jpg)</br>
+<br>![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/index.jpg)</br>
+
+celery
+<br>![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/celery_run.jpg)</br>
+
+   
+   
 
 ## MQTT subscribe(IOT Device、Client)
     import paho.mqtt.client as mqtt
