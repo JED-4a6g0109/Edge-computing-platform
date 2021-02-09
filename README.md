@@ -355,6 +355,8 @@ QuerySet的資料型態用在html上有點不太好用，因此自己轉換成JS
                       headers={'Content-Type': multipart_data.content_type})
     print(response)
 
+#### 模擬train完後透過api上傳至Django Server後，Client自動下載與更新
+![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/api_upload.gif)
 
 
 
@@ -432,7 +434,6 @@ FoodDataset add class
 ## MQTT Client
 使用pySide 有LGPL授權比較保險以下為Client自動更新檔案與介面，以下為Web上傳新版model自動更新與IOT Client介面和辨識
 
-![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/api_upload.gif)
 
 ![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/web_upload.gif)
 
