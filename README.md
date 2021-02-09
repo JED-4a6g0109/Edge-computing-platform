@@ -141,9 +141,8 @@ celery
 <br>![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/celery_run.jpg)</br>
 
 
-### process.py
 
-#### data_information()
+### process.py/data_information()
 需傳入QuerySet的參數型態
 <br>也就是Document.objects.all()的QuerySet</br>
 <br>再來將dataset傳入data_information()查詢最新上傳的dataset並回傳name,description,version,download_url這些資料</br>
@@ -162,7 +161,7 @@ celery
 
         return name,description,version,download_url
     
-#### folder_exists()
+### process.py/folder_exists()
 需傳入QuerySet的參數型態
 <br>也就是Document.objects.all()的QuerySet</br>
 <br>主要處理檔案群組分類與建立資料夾,並回傳三個變數</br>
@@ -208,7 +207,7 @@ celery
 
           return upload_file_path,local_file_path,file_name
          
-#### file_rename()
+### process.py/file_rename()
 處理檔案命名與搬移至對應的group群組資料夾，並更新QuerySet的document路徑
 變數解釋
 - extension     副檔名
@@ -236,14 +235,16 @@ celery
          search_id.document = new_file_path + '/' + rename_file
          search_id.save()
             
-### task.py
+
+
+### task.py/bsdiff_file()
+
 為celery異部任務處理
 <br>這邊負責bsdiff與bspatch在使用者上傳時會呼叫異部處理，以免Django Server卡在檔案上傳頁面無法動彈</br>
 <br>local_file,upload_file,file_name三個參數為folder_exists()回傳的值</br>
 <br>使用subprocess.call來執行外部的命令和程序</br>
 <br>process_path主要設置bsdiff與bspatch的輸入格式</br>
 
-#### bsdiff_file()
     @shared_task
     def bsdiff_file(local_file,upload_file,file_name):
         local_file = local_file + ' '
@@ -259,17 +260,30 @@ celery
             print('重複上傳相同檔案或單獨檔案無法patch')
 
    
-### MQTT.py
+
+    
+### MQTT.py/MQTT_publisher()
 payloadJSON格式進行publish到subscribe客戶端傳遞最新檔案更新訊息
 <br>MQTT_publisher也需傳入QuerySet的參數型態/br>
 <br>再來將dataset傳入data_information()查詢最新上傳的dataset並回傳name,description,version,download_url這些資料</br>
+    
+    def MQTT_publisher(dataset):
+        dataset = dataset
+        name,description,version,download_url = data_information(dataset)
+        try:
+            client = mqtt.Client()
+            client.connect(IP, PORT, 60)   
+            ISOTIMEFORMAT = '%m/%d %H:%M:%S'
+            t = datetime.datetime.now().strftime(ISOTIMEFORMAT)
+            payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : "http://127.0.0.1:8000" + download_url}
+            print (json.dumps(payload))
+            client.publish("pushnotification", json.dumps(payload))               
+        except Exception as e:
+            print(e)
+            
+ 
 
-    client.publish("pushnotification", json.dumps(payload))     
-
-### views.py
-
-
-#### JSON_process()
+### views.py/JSON_process()
 QuerySet的資料型態用在html上有點不太好用，因此自己轉換成JSON格式並分組
 <br>處理完後數據為左邊，經過JSON Editor工具可看到右邊資料被分層的很好處理的JSON格式</br>
 
@@ -295,7 +309,7 @@ QuerySet的資料型態用在html上有點不太好用，因此自己轉換成JS
         return JSON_data
 
 
-#### filelist_view()
+### views/filelist_view()
 經過JSON_process()處理好資料格式後方便進行模板渲染 >>[參考出處](https://www.youtube.com/watch?v=1Pfien-Npdg&ab_channel=coderZworld)
 
 
@@ -315,21 +329,7 @@ QuerySet的資料型態用在html上有點不太好用，因此自己轉換成JS
 
 
 
-#### MQTT_publisher()
 
-    def MQTT_publisher(dataset):
-        dataset = dataset
-        name,description,version,download_url = data_information(dataset)
-        try:
-            client = mqtt.Client()
-            client.connect(IP, PORT, 60)   
-            ISOTIMEFORMAT = '%m/%d %H:%M:%S'
-            t = datetime.datetime.now().strftime(ISOTIMEFORMAT)
-            payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : "http://127.0.0.1:8000" + download_url}
-            print (json.dumps(payload))
-            client.publish("pushnotification", json.dumps(payload))               
-        except Exception as e:
-            print(e)
             
 ### django-rest-framework
 為了讓工程師在訓練完模型時，不必手上至Web Server而透過api方式post至Django上達到自動化
