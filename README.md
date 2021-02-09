@@ -335,7 +335,7 @@ QuerySet的資料型態用在html上有點不太好用，因此自己轉換成JS
             
 ### django-rest-framework
 為了讓工程師在訓練完模型時，不必手上至Web Server而透過api方式post至Django上達到自動化
-<br>開啟Django Server後輸入 http://127.0.0.1:8000/api/file_upload/可看到 Django REST framework頁面確認啟動成功  >>[參考出處](https://github.com/twtrubiks/django-rest-framework-tutorial)</br>
+<br>開啟Django Server後輸入 http://127.0.0.1:8000/api/file_upload/ 可看到 Django REST framework頁面確認啟動成功  >>[參考出處](https://github.com/twtrubiks/django-rest-framework-tutorial)</br>
 
 <br>![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/web_api.jpg)</br>
 
