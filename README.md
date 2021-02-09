@@ -355,43 +355,85 @@ QuerySet的資料型態用在html上有點不太好用，因此自己轉換成JS
                       headers={'Content-Type': multipart_data.content_type})
     print(response)
 
-## Mask RCNN 
-train部分使用colab Mask RCNN對於內存容量非常要求，因此使用colab
 
 
 
-#### MQTT subscribe(IOT Device、Client)
-    import paho.mqtt.client as mqtt
-    import paho.mqtt.publish as publish 
-    import time
-    import requests
-    import shutil
+## Mask RCNN run Colab
+[資料集](https://drive.google.com/file/d/1MdKIwDAuxOJIiLcwMXmuaYLMfDZrcgrK/view?usp=sharing)
 
-    IP = "192.168.50.199"
-    PORT = 1883
-    URL = ""
+train部分使用colab Mask RCNN對於內存容量非常要求，因此使用colab開啟進行traing
+<br>如果是放置在colab請執行[Mask-Rcnn](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/Mask-Rcnn.ipynb)就沒問題了但須注意一些設定</br>
 
-    def download_file(url):
-        local_filename = url.split('/')[-1]
-        with requests.get(url, stream=True) as r:
-            with open('D:\\Download\\' + local_filename, 'wb') as f:
-                shutil.copyfileobj(r.raw, f)
-        return local_filename
+<br>FoodcontrollerConfig的需要注意NUM_CLASSES = 1+要訓練類別總數範例是9類</br>
+- "Bitter_gourd"
+- "Cabbage"
+- "Potato"
+- "Cucumber"
+- "Cucumber_chips"
+- "Garlic"
+- "Chinese_cabbage"
+- "Corn"
+- "Onion"
 
-    def on_connect(client, userdata, flags, rc):
-        print("已連線 "+str(rc))
-        client.subscribe("pushnotification")
+      class FoodcontrollerConfig(Config):
+          NAME = "Foodcontroller_segmentation"
+          NUM_CLASSES = 1 + 9
+          GPU_COUNT = 1
+          IMAGES_PER_GPU = 1
+          config = FoodcontrollerConfig()
+          config.display()
+          print(os.getcwd())
 
-    def on_message(client, userdata, msg):
-        print(msg.topic+" "+ msg.payload.decode('utf-8'))
-        pushnotification_message = eval(msg.payload.decode('utf-8'))
-        URL = pushnotification_message['Download']
-        download_file(URL)
-        print('Download Model complete')
-    client = mqtt.Client()
-    client.on_connect = on_connect
-    client.on_message = on_message
-    client.connect(IP, PORT, 60)
-    client.loop_start()
+FoodDataset add class
+
+    class FoodDataset(utils.Dataset):
+        def load_dataset(self, dataset_dir):
+            self.add_class('dataset', 1, 'Bitter_gourd')
+            self.add_class('dataset', 2, 'Cabbage')
+            self.add_class('dataset', 3, 'Potato')
+            self.add_class('dataset', 4, 'Cucumber')
+            self.add_class('dataset', 5, 'Cucumber_chips')
+            self.add_class('dataset', 6, 'Garlic')
+            self.add_class('dataset', 7, 'Chinese_cabbage')
+            self.add_class('dataset', 8, 'Corn')
+            self.add_class('dataset', 9, 'Onion')
+            for i, filename in enumerate(os.listdir(dataset_dir)):
+                if '.jpg' in filename:
+                    self.add_image('dataset', 
+                                   image_id=i, 
+                                   path=os.path.join(dataset_dir, filename), 
+                                   annotation=os.path.join(dataset_dir, filename.replace('.jpg', '.json')))
+
+        def extract_masks(self, filename):
+            json_file = os.path.join(filename)
+            with open(json_file) as f:
+                img_anns = json.load(f)
+
+            masks = np.zeros([300, 400, len(img_anns['shapes'])], dtype='uint8')
+            classes = []
+            for i, anno in enumerate(img_anns['shapes']):
+                mask = np.zeros([300, 400], dtype=np.uint8)
+                cv2.fillPoly(mask, np.array([anno['points']], dtype=np.int32), 1)
+                masks[:, :, i] = mask
+                classes.append(self.class_names.index(anno['label']))
+            return masks, classes
+
+        def load_mask(self, image_id):
+            info = self.image_info[image_id]
+            path = info['annotation']
+            masks, classes = self.extract_masks(path)
+            return masks, np.asarray(classes, dtype='int32')
+
+        def image_reference(self, image_id):
+            info = self.image_info[image_id]
+            return info['path']
+        
+
+## MQTT Client
+使用pySide 有LGPL授權比較保險以下為Client自動更新檔案與介面，以下為Web上傳新版model自動更新與IOT Client介面和辨識
+
+![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/api_upload.gif)
+
+![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/web_upload.gif)
 
 
