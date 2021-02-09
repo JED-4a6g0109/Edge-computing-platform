@@ -142,6 +142,8 @@ celery
 
 
 
+## 自定義function
+
 ### process.py/data_information()
 需傳入QuerySet的參數型態
 <br>也就是Document.objects.all()的QuerySet</br>
@@ -352,6 +354,9 @@ QuerySet的資料型態用在html上有點不太好用，因此自己轉換成JS
     response = requests.post('http://127.0.0.1:8000/api/file_upload/', data=multipart_data,
                       headers={'Content-Type': multipart_data.content_type})
     print(response)
+
+## Mask RCNN 
+train部分使用colab Mask RCNN對於內存容量非常要求，因此使用colab
 
 
 
