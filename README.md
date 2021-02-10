@@ -211,7 +211,7 @@ celery
          
 ### process.py/file_rename()
 處理檔案命名與搬移至對應的group群組資料夾，並更新QuerySet的document路徑
-變數解釋
+<br>變數解釋</br>
 - extension     副檔名
 - rename_file   需重新命名的檔案
 - old_file_name 檔案上傳時會在..media/底下的檔案的路徑
@@ -433,8 +433,7 @@ FoodDataset add class
 
 ## MQTT Client
 使用pySide 有LGPL授權比較保險以下為Client自動更新檔案與介面，以下為Web上傳新版model自動更新與IOT Client介面和辨識
-
-
+<br>Client[下載](https://drive.google.com/file/d/1pmhQtorQs7ukPCRfY1QVsFfu64BKpFkq/view?usp=sharing)</br>
 ![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/web_upload.gif)
 
 
