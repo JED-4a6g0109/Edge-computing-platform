@@ -1,24 +1,32 @@
 import paho.mqtt.client as mqtt
 import datetime 
 import json
-from file_upload.process import data_information
+from file_upload.compression import files_process,compression,files_remove
 from .models import Document
 
 
-IP = "192.168.1.45"
+
+
+IP = "192.168.137.1"
 PORT = 1883
+
 
 def MQTT_publisher(dataset):
     dataset = dataset
-    name,description,version,download_url = data_information(dataset)
+
 
     try:
+        zip_files,remove_files = files_process(dataset)
+        download_zip,name,description,version = compression(zip_files)
+        files_remove(remove_files)
+
+
         client = mqtt.Client()
         client.connect(IP, PORT, 60)
         
         ISOTIMEFORMAT = '%m/%d %H:%M:%S'
         t = datetime.datetime.now().strftime(ISOTIMEFORMAT)
-        payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : "http://127.0.0.1:8000" + download_url}
+        payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : download_zip}
 
         print (json.dumps(payload))
         client.publish("pushnotification", json.dumps(payload))
@@ -27,22 +35,6 @@ def MQTT_publisher(dataset):
         print(e)
 
 
-def MQTT_publisher_Patch():
-    context ={} 
-    context["dataset"] = Document.objects.all()
-    dataset = context["dataset"]
-    name,description,version,download_url = data_information(dataset)
 
-    dot_index = download_url.rindex('.')
-    patch = download_url[:dot_index] + '.patch'
-    try:
-        client = mqtt.Client()
-        client.connect(IP, PORT, 60)
-        ISOTIMEFORMAT = '%m/%d %H:%M:%S'
-        t = datetime.datetime.now().strftime(ISOTIMEFORMAT)
-        payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : "http://127.0.0.1:8000" + patch}
-        print (json.dumps(payload))
-        client.publish("pushnotification", json.dumps(payload))
-                
-    except Exception as e:
-        print(e)
+
+    

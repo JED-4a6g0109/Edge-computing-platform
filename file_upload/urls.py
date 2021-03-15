@@ -20,7 +20,5 @@ urlpatterns = [
     url(r'^api/', include(router.urls))
 
 
-    # path('image/', views.image_upload_view),
-    # path('update', views.fileupdate_view),
 
 ]

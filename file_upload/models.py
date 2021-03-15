@@ -17,8 +17,8 @@ class Document(models.Model):
     description = models.CharField(max_length=255, blank=True)
     version = models.CharField(max_length=255, blank=True)
     document = models.FileField(upload_to='Files')
-    # document = models.FileField(upload_to='documents%Y-%m-%d-%H-%M-%S')
     uploaded_at = models.DateTimeField(auto_now_add=True)
+
 
     
     class Meta:

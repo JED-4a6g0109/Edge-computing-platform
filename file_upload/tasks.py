@@ -2,11 +2,18 @@
 
 from celery import shared_task
 from file_upload.models import Widget
+from .models import Document
+from .MQTT import MQTT_publisher
+from file_upload.compression import files_process,compression,files_remove
 
 import time
 import subprocess
 import os
-from .MQTT import MQTT_publisher_Patch
+import shutil
+
+context ={} 
+context["update"] = Document.objects.all()
+other_files_path = 'D:/Edge-computing-platform/media/documents/'
 
 @shared_task
 def bsdiff_file(local_file,upload_file,file_name):
@@ -14,43 +21,18 @@ def bsdiff_file(local_file,upload_file,file_name):
     local_file = local_file + ' '
     upload_file = upload_file + ' '
     file_patch = ' ' + file_name + '.patch'
-    
+    print(local_file)
+    print(upload_file)
+
     if local_file != upload_file:
         print("working....")
         process_path = 'bsdiff' +' ' + '' + local_file + '' + '' + upload_file + '' + '' + file_patch + ''
-        subprocess.call(process_path, shell=True, cwd= "D:\\GnuWin32\\bsdiff4.2-win32\\")
-        # MQTT_publisher_Patch()
-        # print('Patch已傳置物聯網裝置')
+        subprocess.call(process_path, shell=True, cwd= "D:\\Edge-computing-platform\\bsdiff4.2-win32\\")
         print('Processed')
-        # return("Processed!")
+        MQTT_publisher(context["update"])
+        print('done!')
     else:
         print('重複上傳相同檔案或單獨檔案無法patch')
+        
 
 
-
-# @shared_task
-# def mul(x, y):
-#     return x * y
-
-
-# @shared_task
-# def xsum(numbers):
-#     return sum(numbers)
-
-
-# @shared_task
-# def count_widgets():
-#     return Widget.objects.count()
-
-
-# @shared_task
-# def rename_widget(widget_id, name):
-#     w = Widget.objects.get(id=widget_id)
-#     w.name = name
-#     w.save()
-
-
-# @shared_task
-# def diff_filename(file1name,file2name):
-#     for line in difflib.unified_diff(file1name, file2name, fromfile='file1', tofile='file2', lineterm=''):
-#         print(line)

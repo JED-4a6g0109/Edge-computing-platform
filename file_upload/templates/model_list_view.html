@@ -50,6 +50,7 @@
                       <th>上傳時間</th>
                       <th>下載</th>
                       <th>補丁</th>
+                      <th>壓縮檔</th>
                   </tr> 
                 </thead>
                 <tbody>
@@ -141,7 +142,7 @@
                                 <td id="demo-{{ value.0.title }}" class="collapse multi-collapse">
                                   {% for i in value%}
 
-                                  <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.h5" download>{{i.version}}Model</a>
+                                  <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.h5" download>{{i.version}}</a>
 
                                   {% endfor %} 
                                  </td>
@@ -157,9 +158,29 @@
                                 <td id="demo-{{ value.0.title }}" class="collapse multi-collapse">
                                   {% for i in value%}
                                     {% if i.version != "1.0.0" %}
-                                      <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}Patch</a>
+                                      <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}</a>
                                     {% else %}
                                       <div>Not Patch</a>
+                                    {% endif %}
+
+
+                                  {% endfor %} 
+                                 </td>
+                              </tr>
+                            </table>
+
+                            
+                          </td>
+
+                          <td><div>Zip</div>
+                            <table>
+                              <tr>
+                                <td id="demo-{{ value.0.title }}" class="collapse multi-collapse">
+                                  {% for i in value%}
+                                    {% if i.version != "1.0.0" %}
+                                      <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.zip" download>{{i.version}}.zip</a>
+                                    {% else %}
+                                      <div>Not Zip</a>
                                     {% endif %}
 
 

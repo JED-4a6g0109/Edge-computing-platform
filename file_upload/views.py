@@ -21,7 +21,6 @@ from rest_framework import viewsets
 
 from file_upload.serializers import DocumentSerializer
 from .process import folder_exists
-from .MQTT import MQTT_publisher
 
 
 class FileForm(ModelForm):
@@ -41,13 +40,9 @@ def model_form_upload(request):
             context["dataset"] = Document.objects.all()
 
             local_file_path,upload_file_path,file_name = folder_exists(context["dataset"])
-
+            
             bsdiff_file.delay(local_file_path,upload_file_path,file_name)
             
-            context["update"] = Document.objects.all()
-
-            MQTT_publisher(context["update"])
-
        
             return HttpResponseRedirect("/index/")
     else:
@@ -63,9 +58,7 @@ def filelist_view(request):
 
     data_serializers = serializers.serialize("json", Document.objects.all())
     JSON_data = JSON_process(data_serializers,context['group'])
-
     context["JSON_data"] = JSON_data 
-
     template = loader.get_template("model_list_view.html")
     res = template.render(context,request)
     return HttpResponse(res) 
@@ -119,7 +112,6 @@ def file_delete(request, pk, template_name='file_confirm_delete.html'):
 
 
 
-# Create your views here.
 class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
