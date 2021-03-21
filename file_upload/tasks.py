@@ -4,7 +4,7 @@ from celery import shared_task
 from file_upload.models import Widget
 from .models import Document
 from .MQTT import MQTT_publisher
-from file_upload.compression import files_process,compression,files_remove
+from .process import files_tmp_process,files_remove
 
 import time
 import subprocess
@@ -26,13 +26,16 @@ def bsdiff_file(local_file,upload_file,file_name):
 
     if local_file != upload_file:
         print("working....")
-        process_path = 'bsdiff' +' ' + '' + local_file + '' + '' + upload_file + '' + '' + file_patch + ''
-        subprocess.call(process_path, shell=True, cwd= "D:\\Edge-computing-platform\\bsdiff4.2-win32\\")
+        process_path = 'hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
+        subprocess.call(process_path, shell=True, cwd= "D:\\Edge-computing-platform\\hdiff_hpatch\\")
         print('Processed')
         MQTT_publisher(context["update"])
-        print('done!')
+        print('Sent Patch to client')
+        print('Done!')
     else:
-        print('重複上傳相同檔案或單獨檔案無法patch')
-        
+        print('1.0.0版本無須patch')
+        zip_files,remove_files = files_tmp_process(context["update"])
+        files_remove(remove_files)
+
 
 
