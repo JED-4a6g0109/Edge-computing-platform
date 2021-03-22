@@ -617,7 +617,7 @@ FoodDataset add class
 
 ## MQTT Client
 使用pySide 有LGPL授權比較保險以下為Client自動更新檔案與介面，以下為Web上傳新版model自動更新與IOT Client介面和辨識
-<br>Client[Client專案](https://github.com/JED-4a6g0109/Client)</br>
+<br>[Client專案文檔與下載](https://github.com/JED-4a6g0109/Client)</br>
 ![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/web_upload.gif)
 
 
