@@ -268,7 +268,7 @@ file_rename(group_folder)
 - rename_file   需重新命名的名稱
 - old_file_name 檔案上傳時會在media_path的檔案的路徑
 - new_file_name group_path路徑
-- tmp_path      tmp_path佔存資料夾路徑
+- tmp_file_path      佔存資料夾路徑
 - search_id     query dataset查詢的id紀錄
 
       def file_rename(group_folder):
