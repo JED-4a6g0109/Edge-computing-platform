@@ -21,7 +21,7 @@ https://www.youtube.com/watch?v=13-eup1sNsA&feature=youtu.be&ab_channel=%E6%B4%A
  - MQTT Mosquitto 扮演著Server與Client橋梁
  - MASK-RCNN遷移式學習   >>[參考出處](https://github.com/TannerGilbert/MaskRCNN-Object-Detection-and-Segmentation)
  - Keras與Tensorflow
- - bsdiff檔案二進制diff與patch   >>[參考出處](https://github.com/zhuyie/bsdiff)
+ - bsdiff檔案二進制diff與patch   >>[參考出處](https://github.com/sisong/HDiffPatch)
  - labelme圖片的label   >>[參考出處](https://github.com/wkentaro/labelme)
  
 ## 主要套件控版與前置作業
