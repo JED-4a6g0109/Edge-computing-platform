@@ -11,8 +11,10 @@
 
 - PySide Client(Subscribe)：接收Server發送過來的JSON並更新。
 
+## 自動部屬影片實作
+https://www.youtube.com/watch?v=13-eup1sNsA&feature=youtu.be&ab_channel=%E6%B4%AA%E5%B4%87%E6%81%A9
 
-## 運用工具
+## 運用工具與出處
  - Django開發Server平台
  - celery異步任務   >>[參考出處](https://github.com/celery/celery)
  - PySide模擬Client端
@@ -433,7 +435,9 @@ FoodDataset add class
 
 ## MQTT Client
 使用pySide 有LGPL授權比較保險以下為Client自動更新檔案與介面，以下為Web上傳新版model自動更新與IOT Client介面和辨識
-<br>Client[下載](https://github.com/JED-4a6g0109/Mask-RCNN)</br>
+<br>Client[Client專案](https://github.com/JED-4a6g0109/Client)</br>
 ![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/web_upload.gif)
+
+
 
 
