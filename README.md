@@ -11,15 +11,17 @@
 
 - PySide Client(Subscribe)：接收Server發送過來的JSON並更新。
 
+## 自動部屬影片實作
+https://www.youtube.com/watch?v=13-eup1sNsA&feature=youtu.be&ab_channel=%E6%B4%AA%E5%B4%87%E6%81%A9
 
-## 運用工具
+## 運用工具與出處
  - Django開發Server平台
  - celery異步任務   >>[參考出處](https://github.com/celery/celery)
  - PySide模擬Client端
  - MQTT Mosquitto 扮演著Server與Client橋梁
  - MASK-RCNN遷移式學習   >>[參考出處](https://github.com/TannerGilbert/MaskRCNN-Object-Detection-and-Segmentation)
  - Keras與Tensorflow
- - bsdiff檔案二進制diff與patch   >>[參考出處](https://github.com/zhuyie/bsdiff)
+ - HDiffPatch檔案二進制diff與patch   >>[參考出處](https://github.com/sisong/HDiffPatch)
  - labelme圖片的label   >>[參考出處](https://github.com/wkentaro/labelme)
  
 ## 主要套件控版與前置作業
@@ -52,79 +54,102 @@
 
 ### Django Server 路徑與IP設置部分
 
+
+
+
 App>file_upload>process.py
 <br>path變數部分須留意路徑設置，此參數的路徑為檔案上傳存放的資料夾/media/Files/</br>
 
     def folder_exists(dataset):
-        """
-        建立檔案名稱與檔案另名一致處理
-        """
-        files = []
-        path = "D:/you_path/media/Files/"
-        print(os.listdir(path))
-        local_files = os.listdir(path)
-        print("總共有",len(local_files),"檔案")
-        new_path = ''
-        dataset = dataset
-        data_information(dataset)
-        folder = path +  name
-        if  not os.path.exists(folder):
-            os.makedirs(folder)
-        file_rename(folder)
-        if rename_file in os.listdir(folder):
-            print('已重新命名')
-        for get_file in os.listdir(folder):
+    """
+    建立檔案名稱與檔案另名一致處理
+    """
+    files = []
+    local_files = os.listdir(group_path)
+    print("總共有",len(local_files),"群組")
+
+    dataset = dataset
+    data_information(dataset)
+    group_folder = group_path +  name
+
+    if  not os.path.exists(group_folder):
+        os.makedirs(group_folder)
+    
+
+    rename_file = file_rename(group_folder)
+
+    if rename_file in os.listdir(group_folder):
+        print('已重新命名')
+
+    for get_file in os.listdir(group_folder):
+        dot = get_file.rfind(".")
+        extension = str(get_file[dot:])
+        if extension == '.h5':
             files.append(get_file)
-        upload_file_path = folder + '/' + str(files[-1])
-        local_file_path = folder + '/' + str(files[0])
-        file_name = folder + '/' + str(files[-1])[:-3]
-        return upload_file_path,local_file_path,file_name
+    files.sort()
+    print(files)
+    upload_file_path = group_folder + '/' + str(files[-1])
+    local_file_path = group_folder + '/' + str(files[0])
+    file_name = group_folder + '/' + str(files[-1])[:-3]
+
+    return upload_file_path,local_file_path,file_name
         
 old_file_name需更改/media/" + file_name前的路徑
 <br>new_file_name需更改/media/Files/" + rename_file</br>
        
-    def file_rename(new_file_path):
-        """
-        檔案重新命名與更新object檔案路徑
-        """
-        global rename_file
-        dot = file_name.find(".")
-        extension = str(file_name[dot:])
+    def file_rename(group_folder):
+    """
+    檔案重新命名與更新object檔案路徑
+    """
+    rename_file = name+"-"+version + extension
+    old_file_name = media_path + file_name
+    new_file_name = group_path + rename_file
+    tmp_file_path = tmp_path + rename_file
 
-        rename_file = name+"-"+version + extension
 
-        old_file_name = "you_path/media/" + file_name
-        new_file_name = "you_path/media/Files/" + rename_file
-
+    if extension =='.zip':
+        shutil.move(old_file_name,tmp_file_path)
+        unzip(tmp_file_path,group_folder)   
+    else:
         os.rename(old_file_name,new_file_name)
-        shutil.move(new_file_name,new_file_path)
+        shutil.move(new_file_name,group_folder)
+        
+    search_id = Document.objects.get(document=file_name)
+    search_id.document = group_folder + '/' + rename_file
+    search_id.save()
 
-        search_id = Document.objects.get(document=file_name)
-        search_id.document = new_file_path + '/' + rename_file
-        search_id.save()
+    return rename_file
 
 App>file_upload>MQTT.py
 <br>IP需更改</br>
 <br>payload Download IP目前設置本機</br>
 
         IP = "you_IP"
-        payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : "http://127.0.0.1:8000" + download_url}
+        payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : download_zip}
 
 App>file_upload>task.py
 <br>subprocess.call的cwd路徑為bsdiff與bspatch存放路徑須注意</br>
 
         def bsdiff_file(local_file,upload_file,file_name):
-            local_file = local_file + ' '
-            upload_file = upload_file + ' '
-            file_patch = ' ' + file_name + '.patch'
 
-            if local_file != upload_file:
-                print("working....")
-                process_path = 'bsdiff' +' ' + '' + local_file + '' + '' + upload_file + '' + '' + file_patch + ''
-                subprocess.call(process_path, shell=True, cwd= "D:\\Edge-computing-platform\\bsdiff4.2-win32\\")
-                print('Processed')
-            else:
-                print('重複上傳相同檔案或單獨檔案無法patch')
+             local_file = local_file + ' '
+             upload_file = upload_file + ' '
+             file_patch = ' ' + file_name + '.patch'
+             print(local_file)
+             print(upload_file)
+
+             if local_file != upload_file:
+                 print("working....")
+                 process_path = 'hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
+                 subprocess.call(process_path, shell=True, cwd= diff_patch_path)
+                 print('Processed')
+                 MQTT_publisher(update_object_datas)
+                 print('Sent Patch to client')
+                 print('Done!')
+             else:
+                 print('1.0.0版本無須patch')
+                 zip_files,remove_files = files_tmp_process(update_object_datas)
+                 files_remove(remove_files)
 
 ### Django Server 與 celery 運行
 上述設定無問題開始啟動Django Server與celery
@@ -144,144 +169,300 @@ celery
 
 ## 自定義function
 
+media_path = "D:/Edge-computing-platform/media/"
+
+group_path = "D:/Edge-computing-platform/media/Files/"
+
+tmp_path = "D:/Edge-computing-platform/media/documents/"
+
+web_download_path = "http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/"
+
 ### process.py/data_information()
-需傳入QuerySet的參數型態
-<br>也就是Document.objects.all()的QuerySet</br>
+需傳入query dataset的參數型態
+<br>也就是Document.objects.all()的query dataset</br>
 <br>再來將dataset傳入data_information()查詢最新上傳的dataset並回傳name,description,version,download_url這些資料</br>
 
-    def data_information(dataset):
-        """
-        讀取資料詳細
-        """
-        global newest,download_url,file_name,name,description,version
-        newest = len(dataset) -1
-        download_url = str(dataset[newest].document.url)
-        file_name = str(dataset[newest].document.name)
-        name = str(dataset[newest])
-        description = str(dataset[newest].description)       
-        version = str(dataset[newest].version)
+變數解釋
+- newest      倒數最後一個為最新datase
+- download_url上傳時預設的存放path
+- file_name   上傳檔案存放path
+- name        檔名
+- description 表單description內容
+- version     表單version內容
+- dot         取得name.的位置
+- extension   取得副檔名
 
-        return name,description,version,download_url
+      def data_information(dataset):
+          global newest,download_url,file_name,name,description,version,dot,extension
+          newest = len(dataset) -1
+          download_url = str(dataset[newest].document.url)
+          file_name = str(dataset[newest].document.name)
+          name = str(dataset[newest])
+          description = str(dataset[newest].description)       
+          version = str(dataset[newest].version)
+          dot = file_name.rfind(".")
+          extension = str(file_name[dot:])
+
+          return name,description,version,download_url
     
 ### process.py/folder_exists()
-需傳入QuerySet的參數型態
-<br>也就是Document.objects.all()的QuerySet</br>
+folder_exists(query dataset)
+
+傳入為query dataset的參數型態
+
+<br>也就是Document.objects.all()的query dataset</br>
 <br>主要處理檔案群組分類與建立資料夾,並回傳三個變數</br>
-<br>當檔案上傳時會先存入到..media/底下</br>
+<br>如果是zip檔會佔存至tmp_path裡</br>
+<br>如果不是zip檔案上傳時會先存入到media_path底下</br>
 <br>而folder_exists()的工作就是把media的檔案搬移至File資料夾裡並進行group分類</br>
 <br>group的分類目前是依照使用者上傳時Title所填的名稱來進行分類</br>
 <br>這邊data_information()的部分不需重複宣告四個變數來存return值，因為在data_information()有設置global</br>
 
-- upload_file_path model1.0.0的路徑
-- local_file_path  model最新上傳時的路徑
-- file_name        model的title名稱
+- upload_file_path model最新上傳時的路徑
+- local_file_path  model1.0.0的路徑
+- file_name        group完重新命名後的路徑
 
 變數解釋
-- path             為總group分類的資料夾
-- folder           為group分類的資料夾
+- rename_file      重新命名path
+- group_folde      為group分類的資料夾
 
       def folder_exists(dataset):
-          """
-          建立檔案名稱與檔案另名一致處理
-          """
           files = []
-          path = "D:/Edge-computing-platform/media/Files/"
-          print(os.listdir(path))
-          local_files = os.listdir(path)
-          print("總共有",len(local_files),"檔案")
-          new_path = ''
+          local_files = os.listdir(group_path)
+          print("總共有",len(local_files),"群組")
           dataset = dataset
-          data_information(dataset) 
-          folder = path +  name
-          if  not os.path.exists(folder):
-              os.makedirs(folder)
-          file_rename(folder)
+          data_information(dataset)
+          group_folder = group_path +  name
 
-          if rename_file in os.listdir(folder):
+          if  not os.path.exists(group_folder):
+              os.makedirs(group_folder)
+
+          rename_file = file_rename(group_folder)
+
+          if rename_file in os.listdir(group_folder):
               print('已重新命名')
 
-          for get_file in os.listdir(folder):
-              files.append(get_file)
+          for get_file in os.listdir(group_folder):
+              dot = get_file.rfind(".")
+              extension = str(get_file[dot:])
+              if extension == '.h5':
+                  files.append(get_file)
 
-          upload_file_path = folder + '/' + str(files[-1])
-          local_file_path = folder + '/' + str(files[0])
-          file_name = folder + '/' + str(files[-1])[:-3]
+          files.sort()
+          print(files)
+          upload_file_path = group_folder + '/' + str(files[-1])
+          local_file_path = group_folder + '/' + str(files[0])
+          file_name = group_folder + '/' + str(files[-1])[:-3]
 
           return upload_file_path,local_file_path,file_name
          
 ### process.py/file_rename()
-處理檔案命名與搬移至對應的group群組資料夾，並更新QuerySet的document路徑
+file_rename(group_folder)
+
+傳入值為group的資料夾路徑
+
+處理檔案命名與搬移至對應的group群組資料夾，並更新query dataset的document路徑
+
 <br>變數解釋</br>
 - extension     副檔名
-- rename_file   需重新命名的檔案
-- old_file_name 檔案上傳時會在..media/底下的檔案的路徑
-- new_file_name File資料夾裡的group路徑
+- rename_file   需重新命名的名稱
+- old_file_name 檔案上傳時會在media_path的檔案的路徑
+- new_file_name group_path路徑
+- tmp_file_path      佔存資料夾路徑
+- search_id     query dataset查詢的id紀錄
 
-      def file_rename(new_file_path):
-         """
-         檔案重新命名與更新object檔案路徑
-         """
-         global rename_file
-         dot = file_name.find(".")
-         extension = str(file_name[dot:])
+      def file_rename(group_folder):
+          rename_file = name+"-"+version + extension
+          old_file_name = media_path + file_name
+          new_file_name = group_path + rename_file
+          tmp_file_path = tmp_path + rename_file
 
-         rename_file = name+"-"+version + extension
+          if extension =='.zip':
+              shutil.move(old_file_name,tmp_file_path)
+              unzip(tmp_file_path,group_folder)   
+          else:
+              os.rename(old_file_name,new_file_name)
+              shutil.move(new_file_name,group_folder)
 
-         old_file_name = "D:/Edge-computing-platform/media/" + file_name
-         new_file_name = "D:/Edge-computing-platform/media/Files/" + rename_file
+          search_id = Document.objects.get(document=file_name)
+          search_id.document = group_folder + '/' + rename_file
+          search_id.save()
 
-         os.rename(old_file_name,new_file_name)
-         shutil.move(new_file_name,new_file_path)
+          return rename_file
 
-         search_id = Document.objects.get(document=file_name)
-         search_id.document = new_file_path + '/' + rename_file
-         search_id.save()
-            
+### process.py/unzip()
+unzip(path,path)
 
+傳入值為佔存資料夾路徑與group的路徑,並依照group解壓縮至group_path正確位置
+
+<br>變數解釋</br>
+- rename_model     存重新命名的模型路徑
+- files            壓縮檔裡所有資料名稱
+
+      def unzip(tmp_file_path,model_path):
+          model_path = model_path + '/'
+          tmp_file_path = tmp_file_path
+          rename_model = model_path + name+"-"+version + ".h5"
+          zf = zipfile.ZipFile(tmp_file_path, 'r')
+          files = zf.namelist()
+          for file in files:
+              dot = file.rfind(".")
+              extension = str(file[dot:])
+              if extension == '.h5':
+                  zf.extract(file,model_path)
+                  os.rename(model_path + file,rename_model)
+              else:
+                  zf.extract(file,tmp_path)
+
+### process.py/compression()
+compression(list)
+
+return zip_files,remove_files type:list
+
+傳入值為list,紀錄需要壓縮檔案的路徑，並回傳下載網址、名稱、敘述、版本
+
+回傳值為下載路徑、名稱、敘述、版本
+
+<br>變數解釋</br>
+- files         存放所有需要壓縮檔案的路徑
+- zip_name      壓縮名稱命名
+- zip_path      壓縮檔案存放路徑
+- New_FileName  對files檔案路徑裡取得檔名與副檔名 ex D:/test/model.h5 >> model.h5
+
+
+      def compression(zip_files):
+          files = zip_files
+          zip_name = name + '-' + version + '.zip'
+          zip_web_path = web_download_path + name + '/' + zip_name
+          zip_path = group_path + name + '/' + zip_name
+
+          with zipfile.ZipFile(zip_path, 'w') as zipF:
+              for file in files:
+                  New_FileName = file[file.rfind('/') +1 :]
+                  zipF.write(file, compress_type=zipfile.ZIP_DEFLATED, arcname=New_FileName)#zipF如果不設定arcname的話會連同路徑壓縮進去會導致很多資料夾，所以要把路徑移除取得檔案名稱
+
+
+          return zip_web_path,name,description,version
+
+
+### process.py/files_tmp_process()
+files_tmp_process(query dataset)
+
+傳入值為query dataset，上傳zip檔案時會佔存至此壓縮檔會紀錄需要壓縮的檔案
+
+以及把.h5模型搬移至Group做儲存並diff完後，統一壓縮labels、patch與您模型的設定檔
+
+
+<br>變數解釋</br>
+- zip_files         存放所有需要壓縮檔案的路徑
+- remove_files      紀錄佔存需刪除的檔案
+- upload_zip_path   存放zip上傳至佔存的路徑
+- patch_name        patch檔案名稱
+- path_patch        patch檔存放group的路徑
+
+      def files_tmp_process(dataset):
+          zip_files = []
+          remove_files = []
+          upload_zip_path = ""  
+          dataset = dataset
+
+          data_information(dataset)
+
+          patch_name = name + '-' + version + '.patch'
+          path_patch = group_path + name + "/" + patch_name
+
+          zip_files.append(path_patch)
+
+          if os.listdir(tmp_path) != []:
+              for get_file in os.listdir(tmp_path):
+                  dot = get_file.rfind(".")
+                  extension = str(get_file[dot:])
+                  if extension != '.zip':
+                      zip_files.append(tmp_path + get_file)
+                  else:
+                      upload_zip_path = tmp_path + get_file
+                  remove_files.append(tmp_path + get_file)
+
+          print('要壓縮的檔案',zip_files)
+          print('所有要刪除的檔案',remove_files)
+
+          return zip_files,remove_files
+    
+    
+### process.py/files_remove()
+files_remove(list)
+
+傳入值為一個list,刪除佔存資料夾檔案的路徑
+
+      def files_remove(remove_files):
+          files = remove_files
+          for file in files:
+              os.remove(file)
+          print('files remove done!')
 
 ### task.py/bsdiff_file()
+bsdiff_file(最新上傳時的路徑,model1.0.0的路徑,group完重新命名後的路徑)
 
 為celery異部任務處理
+
 <br>這邊負責bsdiff與bspatch在使用者上傳時會呼叫異部處理，以免Django Server卡在檔案上傳頁面無法動彈</br>
 <br>local_file,upload_file,file_name三個參數為folder_exists()回傳的值</br>
 <br>使用subprocess.call來執行外部的命令和程序</br>
 <br>process_path主要設置bsdiff與bspatch的輸入格式</br>
 
-    @shared_task
     def bsdiff_file(local_file,upload_file,file_name):
+
         local_file = local_file + ' '
         upload_file = upload_file + ' '
         file_patch = ' ' + file_name + '.patch'
+        print(local_file)
+        print(upload_file)
 
         if local_file != upload_file:
             print("working....")
-            process_path = 'bsdiff' +' ' + '' + local_file + '' + '' + upload_file + '' + '' + file_patch + ''
-            subprocess.call(process_path, shell=True, cwd= "D:\\Edge-computing-platform\\bsdiff4.2-win32\\")
+            process_path = 'hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
+            subprocess.call(process_path, shell=True, cwd= diff_patch_path)
             print('Processed')
+            MQTT_publisher(update_object_datas)
+            print('Sent Patch to client')
+            print('Done!')
         else:
-            print('重複上傳相同檔案或單獨檔案無法patch')
+            print('1.0.0版本無須patch')
+            zip_files,remove_files = files_tmp_process(update_object_datas)
+            files_remove(remove_files)
 
    
 
     
 ### MQTT.py/MQTT_publisher()
+MQTT_publisher(query dataset)
+
 payloadJSON格式進行publish到subscribe客戶端傳遞最新檔案更新訊息
+
 <br>MQTT_publisher也需傳入QuerySet的參數型態/br>
 <br>再來將dataset傳入data_information()查詢最新上傳的dataset並回傳name,description,version,download_url這些資料</br>
     
-    def MQTT_publisher(dataset):
-        dataset = dataset
-        name,description,version,download_url = data_information(dataset)
-        try:
-            client = mqtt.Client()
-            client.connect(IP, PORT, 60)   
-            ISOTIMEFORMAT = '%m/%d %H:%M:%S'
-            t = datetime.datetime.now().strftime(ISOTIMEFORMAT)
-            payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : "http://127.0.0.1:8000" + download_url}
-            print (json.dumps(payload))
-            client.publish("pushnotification", json.dumps(payload))               
-        except Exception as e:
-            print(e)
+    
+<br>變數解釋</br>
+- t                 時間戳記
+- download_zip      web下載路徑
+
+      def MQTT_publisher(dataset):
+          dataset = dataset
+          try:
+              zip_files,remove_files = files_tmp_process(dataset)
+              download_zip,name,description,version = compression(zip_files)
+              files_remove(remove_files)
+              client = mqtt.Client()
+              client.connect(IP, PORT, 60)
+              ISOTIMEFORMAT = '%m/%d %H:%M:%S'
+              t = datetime.datetime.now().strftime(ISOTIMEFORMAT)
+              payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : download_zip}
+              print (json.dumps(payload))
+              client.publish("pushnotification", json.dumps(payload))
+
+          except Exception as e:
+              print(e)
             
  
 
@@ -335,6 +516,9 @@ QuerySet的資料型態用在html上有點不太好用，因此自己轉換成JS
             
 ### django-rest-framework
 為了讓工程師在訓練完模型時，不必手上至Web Server而透過api方式post至Django上達到自動化
+
+這邊要注意如果是壓縮檔上傳只接受.zip檔名，rar、z7等壓縮格式不支援
+
 <br>開啟Django Server後輸入 http://127.0.0.1:8000/api/file_upload/ 可看到 Django REST framework頁面確認啟動成功  >>[參考出處](https://github.com/twtrubiks/django-rest-framework-tutorial)</br>
 
 <br>![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/web_api.jpg)</br>
@@ -433,7 +617,9 @@ FoodDataset add class
 
 ## MQTT Client
 使用pySide 有LGPL授權比較保險以下為Client自動更新檔案與介面，以下為Web上傳新版model自動更新與IOT Client介面和辨識
-<br>Client[下載](https://drive.google.com/file/d/1pmhQtorQs7ukPCRfY1QVsFfu64BKpFkq/view?usp=sharing)</br>
+<br>[Client專案文檔與下載](https://github.com/JED-4a6g0109/Client)</br>
 ![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/web_upload.gif)
+
+
 
 

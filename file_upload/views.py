@@ -23,6 +23,9 @@ from file_upload.serializers import DocumentSerializer
 from .process import folder_exists
 
 
+
+
+
 class FileForm(ModelForm):
     class Meta:
         model = Document
@@ -101,9 +104,16 @@ def file_update(request, pk, template_name='file_update.html'):
 
 
 def file_delete(request, pk, template_name='file_confirm_delete.html'):
-    file= get_object_or_404(Document, pk=pk)    
+    file= get_object_or_404(Document, pk=pk)
+
     if request.method=='POST':
+        print(file)
+
         file.delete()
+
+
+        
+        
         return HttpResponseRedirect("/index/")
     return render(request, template_name, {'object':file})
 

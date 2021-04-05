@@ -13,7 +13,8 @@ import shutil
 
 context ={} 
 context["update"] = Document.objects.all()
-other_files_path = 'D:/Edge-computing-platform/media/documents/'
+update_object_datas = context["update"]
+diff_patch_path = "D:\\Edge-computing-platform\\hdiff_hpatch\\"
 
 @shared_task
 def bsdiff_file(local_file,upload_file,file_name):
@@ -27,14 +28,14 @@ def bsdiff_file(local_file,upload_file,file_name):
     if local_file != upload_file:
         print("working....")
         process_path = 'hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
-        subprocess.call(process_path, shell=True, cwd= "D:\\Edge-computing-platform\\hdiff_hpatch\\")
+        subprocess.call(process_path, shell=True, cwd= diff_patch_path)
         print('Processed')
-        MQTT_publisher(context["update"])
+        MQTT_publisher(update_object_datas)
         print('Sent Patch to client')
         print('Done!')
     else:
         print('1.0.0版本無須patch')
-        zip_files,remove_files = files_tmp_process(context["update"])
+        zip_files,remove_files = files_tmp_process(update_object_datas)
         files_remove(remove_files)
 
 

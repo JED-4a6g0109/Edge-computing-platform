@@ -2,8 +2,6 @@ import paho.mqtt.client as mqtt
 import datetime 
 import json
 from .models import Document
-
-
 from .process import files_tmp_process,compression,files_remove
 
 
@@ -30,6 +28,7 @@ def MQTT_publisher(dataset):
 
         print (json.dumps(payload))
         client.publish("pushnotification", json.dumps(payload))
+        
                 
     except Exception as e:
         print(e)
