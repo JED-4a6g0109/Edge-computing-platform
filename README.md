@@ -28,8 +28,49 @@ https://www.youtube.com/watch?v=13-eup1sNsA&feature=youtu.be&ab_channel=%E6%B4%A
 此有詳細紀錄requirements.txt，可使用以下指令進行安裝
    
     pip install -r requirements.txt
+
+## Docker 
+
+    git clone 此專案
     
-### MQTT Mosquitto 安裝與設定
+    docker-compose run --service-ports django python3 manage.py runserver 0.0.0.0:8888
+    
+到這邊確認是否可開啟127.0.0.1:8888/index/
+
+成功開啟後ctrl+c終止後下指令
+
+    docker-compose up
+    
+docker-compose up完後會看到四個服務mosquitto、celery、django、redis
+
+如果四個都有成功並正常運行代表OK沒意外mosquitto會開啟失敗顯示Error: Address not available
+
+因為mosquitto2.0有變動需參考官方設定[Migrating from 1.x to 2.0](https://mosquitto.org/documentation/migrating-to-2-0/)
+
+進入mosquitto的container後
+  
+    cd /mosquitto/config
+    vi mosquitto.conf
+    
+更改設定
+    
+    listener 1883
+    allow_anonymous true
+
+改完後查mosquitto container log 就能看到mosquitto version 2.0.10 running
+
+剩下就是把專案註解的docker linux給解開，環境就一鍵建置好了!
+
+ - model_list_view.html
+ - MQTT.py
+ - process.py
+ - task.py
+    
+    
+docker-compose等設置參考[Very Academy](https://github.com/veryacademy/YT-Django-Docker-Compose-Celery-Redis-PostgreSQL)
+
+
+### Windown 10 MQTT Mosquitto 安裝與設定(使用docker可省略)
 
  - MQTT Mosquitto至官網[下載](https://mosquitto.org/download/)進行安裝
 安裝完後開通開通防火牆埠號1883。Windows的防火牆預設沒有開通1883埠號，因此本機電腦以外的MQTT裝置無法和Mosquitto伺服器連線。
@@ -54,102 +95,17 @@ https://www.youtube.com/watch?v=13-eup1sNsA&feature=youtu.be&ab_channel=%E6%B4%A
 
 ### Django Server 路徑與IP設置部分
 
+#### Windown10 
+如果是使用Win10來執行請修改以下檔案，把docker linux換成 Win10的註解
+ - model_list_view.html
+ - MQTT.py
+ - process.py
+ - task.py
 
 
 
-App>file_upload>process.py
-<br>path變數部分須留意路徑設置，此參數的路徑為檔案上傳存放的資料夾/media/Files/</br>
-
-    def folder_exists(dataset):
-    """
-    建立檔案名稱與檔案另名一致處理
-    """
-    files = []
-    local_files = os.listdir(group_path)
-    print("總共有",len(local_files),"群組")
-
-    dataset = dataset
-    data_information(dataset)
-    group_folder = group_path +  name
-
-    if  not os.path.exists(group_folder):
-        os.makedirs(group_folder)
-    
-
-    rename_file = file_rename(group_folder)
-
-    if rename_file in os.listdir(group_folder):
-        print('已重新命名')
-
-    for get_file in os.listdir(group_folder):
-        dot = get_file.rfind(".")
-        extension = str(get_file[dot:])
-        if extension == '.h5':
-            files.append(get_file)
-    files.sort()
-    print(files)
-    upload_file_path = group_folder + '/' + str(files[-1])
-    local_file_path = group_folder + '/' + str(files[0])
-    file_name = group_folder + '/' + str(files[-1])[:-3]
-
-    return upload_file_path,local_file_path,file_name
-        
-old_file_name需更改/media/" + file_name前的路徑
-<br>new_file_name需更改/media/Files/" + rename_file</br>
-       
-    def file_rename(group_folder):
-    """
-    檔案重新命名與更新object檔案路徑
-    """
-    rename_file = name+"-"+version + extension
-    old_file_name = media_path + file_name
-    new_file_name = group_path + rename_file
-    tmp_file_path = tmp_path + rename_file
 
 
-    if extension =='.zip':
-        shutil.move(old_file_name,tmp_file_path)
-        unzip(tmp_file_path,group_folder)   
-    else:
-        os.rename(old_file_name,new_file_name)
-        shutil.move(new_file_name,group_folder)
-        
-    search_id = Document.objects.get(document=file_name)
-    search_id.document = group_folder + '/' + rename_file
-    search_id.save()
-
-    return rename_file
-
-App>file_upload>MQTT.py
-<br>IP需更改</br>
-<br>payload Download IP目前設置本機</br>
-
-        IP = "you_IP"
-        payload = {'Model_Name' : name , 'Description' : description,'Version' : version ,'Time' : t , 'Download' : download_zip}
-
-App>file_upload>task.py
-<br>subprocess.call的cwd路徑為bsdiff與bspatch存放路徑須注意</br>
-
-        def bsdiff_file(local_file,upload_file,file_name):
-
-             local_file = local_file + ' '
-             upload_file = upload_file + ' '
-             file_patch = ' ' + file_name + '.patch'
-             print(local_file)
-             print(upload_file)
-
-             if local_file != upload_file:
-                 print("working....")
-                 process_path = 'hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
-                 subprocess.call(process_path, shell=True, cwd= diff_patch_path)
-                 print('Processed')
-                 MQTT_publisher(update_object_datas)
-                 print('Sent Patch to client')
-                 print('Done!')
-             else:
-                 print('1.0.0版本無須patch')
-                 zip_files,remove_files = files_tmp_process(update_object_datas)
-                 files_remove(remove_files)
 
 ### Django Server 與 celery 運行
 上述設定無問題開始啟動Django Server與celery
