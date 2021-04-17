@@ -141,8 +141,10 @@
                               <tr>
                                 <td id="demo-{{ value.0.title }}" class="collapse multi-collapse">
                                   {% for i in value%}
-
-                                  <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.h5" download>{{i.version}}</a>
+                                  <!-- win10 -->
+                                  <!-- <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.h5" download>{{i.version}}</a> -->
+                                  <!-- docker linux -->
+                                  <div><a href="http://127.0.0.1:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.h5" download>{{i.version}}</a>
 
                                   {% endfor %} 
                                  </td>
@@ -158,8 +160,11 @@
                                 <td id="demo-{{ value.0.title }}" class="collapse multi-collapse">
                                   {% for i in value%}
                                     {% if i.version != "1.0.0" %}
-                                      <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}</a>
-                                    {% else %}
+                                    <!-- win10 -->
+                                    <!-- <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}</a> -->
+                                    <!-- docker linux -->
+                                    <div><a href="http://127.0.0.1:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}</a>
+                                        {% else %}
                                       <div>Not Patch</a>
                                     {% endif %}
 
@@ -178,8 +183,11 @@
                                 <td id="demo-{{ value.0.title }}" class="collapse multi-collapse">
                                   {% for i in value%}
                                     {% if i.version != "1.0.0" %}
-                                      <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.zip" download>{{i.version}}.zip</a>
-                                    {% else %}
+                                    <!-- win10 -->
+                                    <!-- <div><a href="http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.zip" download>{{i.version}}.zip</a> -->
+                                    <!-- docker linux -->
+                                    <div><a href="http://127.0.0.1:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.zip" download>{{i.version}}.zip</a>
+                                        {% else %}
                                       <div>Not Zip</a>
                                     {% endif %}
 

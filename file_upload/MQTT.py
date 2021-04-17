@@ -4,8 +4,11 @@ import json
 from .models import Document
 from .process import files_tmp_process,compression,files_remove
 
+# win10
+# IP = "192.168.137.1"
 
-IP = "192.168.137.1"
+# docker linux
+IP = "172.20.0.3"
 PORT = 1883
 
 

@@ -1,0 +1,73 @@
+version: "3.8"
+   
+services:
+    django:
+        build: .
+        container_name: django
+        command: python manage.py runserver 0.0.0.0:8888
+        volumes:
+            - .:/Edge-computing-platform
+        ports:
+            - "8888:8888"
+        environment:
+            - DEBUG=1
+            - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+            - CELERY_BROKER=redis://redis:6379/0
+            - CELERY_BACKEND=redis://redis:6379/0
+        depends_on:
+            - redis
+            - mosquitto
+
+
+
+
+    celery:
+        build: .
+        container_name: celery
+        command: celery -A App worker -l info
+        volumes:
+            - .:/Edge-computing-platform
+        environment:
+            - DEBUG=1
+            - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+            - CELERY_BROKER=redis://redis:6379/0
+            - CELERY_BACKEND=redis://redis:6379/0
+        depends_on:
+            - django
+            - redis
+            - mosquitto
+        
+        links:
+            - redis
+
+
+    redis:
+        container_name: redis
+
+        image: "redis:latest"
+
+    mosquitto:
+        image: eclipse-mosquitto
+        container_name: mosquitto
+        ports:
+            - "1883:1883"
+
+        volumes:
+            - /mosquitto/config
+            - /mosquitto/data
+            - /mosquitto/log
+        restart: unless-stopped
+        
+
+
+# version: "3.9"
+   
+# services:
+
+#   web:
+#     build: .
+#     command: python manage.py runserver 0.0.0.0:8888
+#     volumes:
+#       - .:/Edge-computing-platform
+#     ports:
+#       - "8888:8888"

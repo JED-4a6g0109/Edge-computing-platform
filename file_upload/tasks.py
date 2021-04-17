@@ -11,13 +11,16 @@ import subprocess
 import os
 import shutil
 
-context ={} 
-context["update"] = Document.objects.all()
-update_object_datas = context["update"]
-diff_patch_path = "D:\\Edge-computing-platform\\hdiff_hpatch\\"
 
+#win10
+# diff_patch_path = "D:\\Edge-computing-platform\\hdiff_hpatch\\win10\\"
+#docker linux
+diff_patch_path = "/Edge-computing-platform/hdiff_hpatch/linux/"
 @shared_task
 def bsdiff_file(local_file,upload_file,file_name):
+    context ={} 
+    context["update"] = Document.objects.all()
+    update_object_datas = context["update"]
 
     local_file = local_file + ' '
     upload_file = upload_file + ' '
@@ -27,7 +30,11 @@ def bsdiff_file(local_file,upload_file,file_name):
 
     if local_file != upload_file:
         print("working....")
-        process_path = 'hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
+        #win10
+        # process_path = 'hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
+        #docker linux
+        process_path = './hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
+        print(process_path)
         subprocess.call(process_path, shell=True, cwd= diff_patch_path)
         print('Processed')
         MQTT_publisher(update_object_datas)

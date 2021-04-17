@@ -4,10 +4,18 @@ import shutil
 from .models import Document
 import zipfile
 
-media_path = "D:/Edge-computing-platform/media/"
-group_path = "D:/Edge-computing-platform/media/Files/"
-tmp_path = "D:/Edge-computing-platform/media/documents/"
-web_download_path = "http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/"
+#Win10
+# media_path = "D:/Edge-computing-platform/media/"
+# group_path = "D:/Edge-computing-platform/media/Files/"
+# tmp_path = "D:/Edge-computing-platform/media/documents/"
+# web_download_path = "http://127.0.0.1:8000/media/D%3A/Edge-computing-platform/media/Files/"
+
+
+#docker linux
+media_path = "/Edge-computing-platform/media/"
+group_path = "/Edge-computing-platform/media/Files/"
+tmp_path = "/Edge-computing-platform/media/documents/"
+web_download_path = "http://127.0.0.1:8888/media/Files/"
 
 def data_information(dataset):
     """
@@ -20,6 +28,7 @@ def data_information(dataset):
     name = str(dataset[newest])
     description = str(dataset[newest].description)       
     version = str(dataset[newest].version)
+    print(version)
     dot = file_name.rfind(".")
     extension = str(file_name[dot:])
 
@@ -131,6 +140,7 @@ def compression(zip_files):
 
 
 def files_tmp_process(dataset):
+    global version
     """
     files_tmp_process(query dataset)
     傳入值為query dataset，上傳zip檔案時會佔存至此壓縮檔會紀錄需要壓縮的檔案，
@@ -143,6 +153,7 @@ def files_tmp_process(dataset):
     dataset = dataset
 
     data_information(dataset)
+    print(version)
 
     patch_name = name + '-' + version + '.patch'
     path_patch = group_path + name + "/" + patch_name
