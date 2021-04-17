@@ -66,7 +66,15 @@ docker-compose up完後會看到四個服務mosquitto、celery、django、redis
  - process.py
  - task.py
     
-    
+## Docker System
+![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/Docker%20system.png)
+
+## Use Case Diagram
+![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/use%20case%20diagram.png)
+
+## Sequence Diagram
+![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/sequence%20diagram.png)
+
 docker-compose等設置參考[Very Academy](https://github.com/veryacademy/YT-Django-Docker-Compose-Celery-Redis-PostgreSQL)
 
 
