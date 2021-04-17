@@ -65,7 +65,7 @@ docker-compose up完後會看到四個服務mosquitto、celery、django、redis
  - MQTT.py
  - process.py
  - task.py
- - 
+
 docker-compose等設置參考[Very Academy](https://github.com/veryacademy/YT-Django-Docker-Compose-Celery-Redis-PostgreSQL)
 
 
