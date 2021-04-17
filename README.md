@@ -65,7 +65,10 @@ docker-compose up完後會看到四個服務mosquitto、celery、django、redis
  - MQTT.py
  - process.py
  - task.py
-    
+ - 
+docker-compose等設置參考[Very Academy](https://github.com/veryacademy/YT-Django-Docker-Compose-Celery-Redis-PostgreSQL)
+
+
 ## Docker System
 ![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/Docker%20system.png)
 
@@ -75,7 +78,6 @@ docker-compose up完後會看到四個服務mosquitto、celery、django、redis
 ## Sequence Diagram
 ![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/report_image/sequence%20diagram.png)
 
-docker-compose等設置參考[Very Academy](https://github.com/veryacademy/YT-Django-Docker-Compose-Celery-Redis-PostgreSQL)
 
 
 ### Windown 10 MQTT Mosquitto 安裝與設定(使用docker可省略)
