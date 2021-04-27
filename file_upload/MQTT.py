@@ -2,24 +2,26 @@ import paho.mqtt.client as mqtt
 import datetime 
 import json
 from .models import Document
-from .process import files_tmp_process,compression,files_remove
+from .process import compression,tmp_files_remove
 
-# win10
-# IP = "192.168.137.1"
+
 
 # docker linux
 IP = "172.20.0.3"
 PORT = 1883
 
 
-def MQTT_publisher(dataset):
-    dataset = dataset
-
+def MQTT_publisher(zip_files,zip_path):
+    """
+    MQTT_publisher(zip_files,zip_path)
+    zip_files type = list
+    zip_path type = string
+    傳入值為需要壓縮的files與zip路徑
+    """
 
     try:
-        zip_files,remove_files = files_tmp_process(dataset)
-        download_zip,name,description,version = compression(zip_files)
-        files_remove(remove_files)
+        download_zip,name,description,version = compression(zip_files,zip_path)
+        tmp_files_remove()
 
 
         client = mqtt.Client()

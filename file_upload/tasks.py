@@ -4,46 +4,48 @@ from celery import shared_task
 from file_upload.models import Widget
 from .models import Document
 from .MQTT import MQTT_publisher
-from .process import files_tmp_process,files_remove
+from .process import tmp_files_remove,diff,cmp
 
 import time
-import subprocess
 import os
 import shutil
 
 
-#win10
-# diff_patch_path = "D:\\Edge-computing-platform\\hdiff_hpatch\\win10\\"
+
 #docker linux
 diff_patch_path = "/Edge-computing-platform/hdiff_hpatch/linux/"
+
+
+
 @shared_task
-def bsdiff_file(local_file,upload_file,file_name):
-    context ={} 
-    context["update"] = Document.objects.all()
-    update_object_datas = context["update"]
+def diff_mqtt_task(*variables):
+    """
+    diff_mqtt_task(diff_files,upload_files,patch_files,zip_path,tmp_file_path)
+    diff_files type = list
+    upload_files type = list
+    patch_files type = list 
+    zip_path type = string
+    tmp_file_path type = string
+    diff與mqtt任務，傳入值為需要diff、patch的資訊、建立zip路徑、暫存路徑
+    """
 
-    local_file = local_file + ' '
-    upload_file = upload_file + ' '
-    file_patch = ' ' + file_name + '.patch'
-    print(local_file)
-    print(upload_file)
+    diff_files,upload_files,patch_files,zip_path,tmp_file_path = variables
+    
 
-    if local_file != upload_file:
+    if cmp(diff_files,upload_files) != 0:
         print("working....")
-        #win10
-        # process_path = 'hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
-        #docker linux
-        process_path = './hdiffz' +' ' + '' + upload_file + '' + '' + local_file + '' + '' + file_patch + ''
-        print(process_path)
-        subprocess.call(process_path, shell=True, cwd= diff_patch_path)
-        print('Processed')
-        MQTT_publisher(update_object_datas)
+        
+        for index in range(len(diff_files)):
+            diff(diff_files[index],upload_files[index],patch_files[index],index)
+
+        MQTT_publisher(patch_files,zip_path)
         print('Sent Patch to client')
         print('Done!')
+
     else:
-        print('1.0.0版本無須patch')
-        zip_files,remove_files = files_tmp_process(update_object_datas)
-        files_remove(remove_files)
+        print('1.0.0 version No need to patch')
+        shutil.move(tmp_file_path,zip_path)
+        tmp_files_remove()
 
 
 

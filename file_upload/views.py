@@ -11,7 +11,7 @@ from django.forms import ModelForm
 
 from django.conf import settings                  
 import json  
-from .tasks import bsdiff_file
+from .tasks import diff_mqtt_task
 from django.http import HttpResponse
 from django.template import loader
 from django.core import serializers
@@ -20,7 +20,7 @@ from rest_framework import status,permissions
 from rest_framework import viewsets
 
 from file_upload.serializers import DocumentSerializer
-from .process import folder_exists
+from .process import folder_exists,file_rename
 
 
 
@@ -42,9 +42,17 @@ def model_form_upload(request):
             context ={} 
             context["dataset"] = Document.objects.all()
 
-            local_file_path,upload_file_path,file_name = folder_exists(context["dataset"])
-            
-            bsdiff_file.delay(local_file_path,upload_file_path,file_name)
+            group_folder = folder_exists(context["dataset"])
+
+            diff_files,upload_files,patch_files,zip_path,tmp_file_path = file_rename(group_folder)
+    
+
+            diff_mqtt_task.delay(diff_files,upload_files,patch_files,zip_path,tmp_file_path)
+            # diff_mqtt_task.delay(file_rename(group_folder))
+                
+
+
+
             
        
             return HttpResponseRedirect("/index/")
