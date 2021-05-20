@@ -4,10 +4,6 @@
 為了方便設備選擇Model的版本與更新，實現了神經網路模型自動部屬平台，而此平台透過MQTT的方式通知IOT設備更新的訊息，
 同時IOT設備會向Server進行Requset，Server接收後會傳送patch到IOT設備進行自動更新
 
-## 詳細介紹
-Youtube
-https://www.youtube.com/watch?v=ISRpf_gjXcU&ab_channel=%E6%B4%AA%E5%B4%87%E6%81%A9
-
 ![image](https://github.com/JED-4a6g0109/Edge-computing-platform/blob/main/MQTT.png)
 
 - Django(Publisher)：只要上傳model就會發送更新訊息至Client。
@@ -15,6 +11,10 @@ https://www.youtube.com/watch?v=ISRpf_gjXcU&ab_channel=%E6%B4%AA%E5%B4%87%E6%81%
 - mosquitto(MQTT Broker)：中繼站負責Server與Client溝通橋樑。
 
 - PySide Client(Subscribe)：接收Server發送過來的JSON並更新。
+
+## 詳細介紹
+Youtube
+https://www.youtube.com/watch?v=ISRpf_gjXcU&ab_channel=%E6%B4%AA%E5%B4%87%E6%81%A9
 
 ## 自動部屬影片實作
 https://www.youtube.com/watch?v=13-eup1sNsA&feature=youtu.be&ab_channel=%E6%B4%AA%E5%B4%87%E6%81%A9
