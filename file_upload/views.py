@@ -24,6 +24,27 @@ from .process import folder_exists,file_rename
 
 
 
+# import paho.mqtt.client as mqtt
+# import paho.mqtt.publish as publish 
+
+# #s
+# IP = "172.19.0.2"
+# PORT = 1883
+
+# def MQTT_publisher():
+
+#     try:
+#         client = mqtt.Client()
+#         client.connect(IP, PORT, 60)
+#         ISOTIMEFORMAT = '%m/%d %H:%M:%S'
+#         payload = {'Model_Name' : "name" , 'Description' : "description",'Version' : "version" ,'Time' : "t" , 'Download' : "http://127.0.0.1:8000" + "download_url"}
+#         print (json.dumps(payload))
+#         client.publish("pushnotification", json.dumps(payload))
+                
+#     except Exception as e:
+#         print(e)
+        
+# MQTT_publisher()
 
 
 class FileForm(ModelForm):
@@ -72,6 +93,9 @@ def filelist_view(request):
     context["JSON_data"] = JSON_data 
     template = loader.get_template("model_list_view.html")
     res = template.render(context,request)
+
+
+
     return HttpResponse(res) 
 
 

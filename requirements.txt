@@ -16,3 +16,13 @@ celery==5.0.2
 # opencv-python==4.2.0.34
 djangorestframework==3.12.2
 redis==3.5.3
+
+-f https://download.pytorch.org/whl/cu101/torch_stable.html
+torch==1.7.0
+-f https://download.pytorch.org/whl/cu101/torch_stable.html
+torch==1.7.0
+torchvision==0.8.1
+h5py
+onnx
+
+

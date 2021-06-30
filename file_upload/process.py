@@ -7,13 +7,20 @@ import json
 from os import listdir
 from os.path import isfile, isdir, join
 import subprocess
+import importlib
 
+import io
+import numpy as np
+from torch import nn
+import torch.utils.model_zoo as model_zoo
+import torch.onnx
+from torchvision import models   
 
 #docker linux
 media_path = "/Edge-computing-platform/media/"
 group_path = "/Edge-computing-platform/media/Files/"
 tmp_path = "/Edge-computing-platform/media/documents/"
-web_download_path = "http://127.0.0.1:8888/media/Files/"
+web_download_path = "http://192.168.50.199:8888/media/Files/"
 
 diff_patch_path = "/Edge-computing-platform/hdiff_hpatch/linux/"
 name = ""
@@ -71,6 +78,8 @@ def file_rename(group_folder):
     zip_path = group_path + name + '/' + upload_zip
 
 
+    convert = False
+
     diff_files = []
     patch_files = []
     upload_files = []
@@ -79,12 +88,21 @@ def file_rename(group_folder):
     if extension =='.zip':
         shutil.move(upload_zip_path,tmp_file_path)
         files = unzip(tmp_file_path)
-
+        
 
         if "config.json" in files:
 
             with open(tmp_path+ 'config.json') as f:
                 config = json.load(f)
+
+  
+
+            # if config["conver_to_onnx"] == "yes":
+            #     model = tmp_path + config["files"]["model"]
+            #     network = tmp_path + config["files"]["network_file"]
+            #     randn_variable =  tmp_path + config["NCHW"]
+            #     convert = True
+    
 
             for get_file in config["diff"]:
                 dot = get_file.rfind(".")
@@ -106,6 +124,8 @@ def file_rename(group_folder):
                 patch_files.append(patch_file_path)
 
                 shutil.move(old_name,group_folder + rename)
+            
+            
 
 
             search_id = Document.objects.get(document=file_name)
@@ -207,3 +227,53 @@ def cmp(a, b):
     傳入值任何型態，並兩者比較是否相同
     """
     return (a > b) - (a < b) 
+
+
+
+# def import_network(module):
+
+#         # get a handle on the module
+#     mdl = importlib.import_module(module)
+#     # is there an __all__?  if so respect it
+#     if "__all__" in mdl.__dict__:
+#         names = mdl.__dict__["__all__"]
+#     else:
+#         # otherwise we import all names that don't begin with _
+#         names = [x for x in mdl.__dict__ if not x.startswith("_")]
+
+#     # now drag them in
+#     globals().update({k: getattr(mdl, k) for k in names})
+
+
+# def convert_onnx(model_path,randn_variable,version):
+
+#     image_counts = randn_variable[0]
+#     channel = randn_variable[1]
+#     high = randn_variable[2]
+#     width = randn_variable[3]
+
+
+#     dot = model_path.rfind(".")
+#     extension = str(model_path[dot:])
+#     reextension = str(model_path[:dot])
+
+#     onnx_file  = reextension + '-' + version + ".onnx" 
+
+
+#     model = torch.load(model_path)
+#     model.eval()
+#     print('Finished loading model!')
+#     print(model)
+#     device = torch.device("cuda")
+#     model = model.to(device)
+
+#     # ------------------------ export -----------------------------
+#     output_onnx = onnx_file
+
+#     print("==> Exporting model to ONNX format at '{}'".format(output_onnx))
+#     input_names = ["input0"]
+#     output_names = ["output0"]
+#     inputs = torch.randn(image_counts, channel, high, width).to(device)
+
+#     torch_out = torch.onnx._export(model, inputs, output_onnx, export_params=True, verbose=False,
+#                                 input_names=input_names, output_names=output_names)
