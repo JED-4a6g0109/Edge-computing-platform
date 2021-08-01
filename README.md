@@ -733,6 +733,8 @@ Colab 訓練https://colab.research.google.com/drive/1ILtnyGxCmnGh6aj2V0LHIfv9SqA
 
 
 ## Auto patch & restart script
+檔名為update.py此py檔為監聽最新版與自動化更新腳本
+
 
     #!/usr/bin/env python
     # coding: utf-8
@@ -750,16 +752,15 @@ Colab 訓練https://colab.research.google.com/drive/1ILtnyGxCmnGh6aj2V0LHIfv9SqA
     import sys
     import zipfile
     import subprocess
-    import subprocess
 
     folder = "/home/jed/Desktop/flower/"
 
-    script_path = folder + "flower3_onnx_tensorrt.py"
+    script_path = folder + "flower_onnx_tensorrt.py"
 
     IP = "192.168.50.199"
     PORT = 1883
     URL = ""
-    path = "flower.onnx"
+    model_path = ""
 
     update_file = ""
     update_version = ""
@@ -781,7 +782,7 @@ Colab 訓練https://colab.research.google.com/drive/1ILtnyGxCmnGh6aj2V0LHIfv9SqA
         return "已連線 "+str(rc)
 
     def on_message(client, userdata, msg):
-        global update_file,update_version,first_model,first_labels,path,folder
+        global update_file,update_version,first_model,first_labels,path,folder,model_path
 
         print(msg.topic+" "+ msg.payload.decode('utf-8'))
         pushnotification_message = eval(msg.payload.decode('utf-8'))
@@ -792,37 +793,34 @@ Colab 訓練https://colab.research.google.com/drive/1ILtnyGxCmnGh6aj2V0LHIfv9SqA
 
         zip_file = download_file(URL)
         print('Download Model complete')
-        files = zip(zip_file)
-        #     try:
+        patch_file = zip(zip_file)
 
-        model_name = folder + "flower-" + update_version +".onnx"
-        labels_name = folder + "labels1.txt"
+        model_path = folder + "flower-" + update_version +".onnx"
 
 
-        path = model_name
-        for patch_file in files:
+        patch(first_model,folder + patch_file,model_path)
 
-            if patch_file == "labels-1.0.1.patch":
-                patch(first_labels,folder + patch_file,labels_name)
-            else:
-                patch(first_model,folder + patch_file,model_name)
         print("即將重啟")
         time.sleep(1)
         kill()
         time.sleep(1)
+        print("啟動")
+
         restart()
 
 
     def zip(file):
-        global path
+        patch = ""
         zf = zipfile.ZipFile(file, 'r')
         zf.extractall()
         files = zf.namelist()
 
+        for file in files:
+            if(".patch" in file):
+                patch = file
 
 
-
-        return files
+        return patch
 
 
 
@@ -831,44 +829,56 @@ Colab 訓練https://colab.research.google.com/drive/1ILtnyGxCmnGh6aj2V0LHIfv9SqA
 
         process_path = './hpatchz' + ' ' + first_file + ' ' + patch_file  + ' ' + output_file + ''
         print(process_path)
-        print('patching')
+        print('自動更新模型中...')
         subprocess.call(process_path, shell=True, cwd = diff_patch_path)
-        print('Done!')
+        print('已更新完畢')
 
 
 
 
     def kill():
-        global script_path
-        command = 'pkill -f test.py' + script_path
+        command = 'pkill -f flower_onnx_tensorrt.py'
         subprocess.call(command, shell=True)
 
     def restart():
-        global script_path
-        command = 'python3 ' + script_path
+        global script_path,model_path
+        command = 'python3 ' + script_path + ' ' + model_path
+        print(command)
+    #     command = 'python3 ' + script_path + ' ' + model_path
+    #     -e 運行完自動關閉 -hold 運行完保留視窗
         subprocess.call(['xterm', '-e', command])
 
-    def update_path(child_conn):
-        global path
-        child_conn.send(path)
-        child_conn.close()
+
+    # def update_path(child_conn):
+    #     global path
+    #     print(path)
+    #     child_conn.send(path)
+    #     child_conn.close()
 
 
 
     if __name__ == '__main__':
 
 
+        try:
             print("Script start !")
             client = mqtt.Client()
             client.on_connect = on_connect
             client.on_message = on_message
             client.connect(IP, PORT, 60)
-            client.loop_start()
+            client.loop_forever()
+
+
+
+        except Exception as e:
+            print(e)
+
 
 
 
 
 ## Atuo script update tensorrt 
+檔名為flower_onnx_tensorrt.py此py檔為使用tensorrt推論程式碼
 
 
     #!/usr/bin/env python
@@ -876,9 +886,7 @@ Colab 訓練https://colab.research.google.com/drive/1ILtnyGxCmnGh6aj2V0LHIfv9SqA
 
     # In[ ]:
 
-
-    from multiprocessing import Process,Queue,Pipe
-    from update import update_path
+    import sys
     import torch
     #load model
     import onnx
@@ -889,38 +897,48 @@ Colab 訓練https://colab.research.google.com/drive/1ILtnyGxCmnGh6aj2V0LHIfv9SqA
     import time
 
 
+    class Tensorrt_Inference(object):
+        def __init__(self, model_path):
+            print("model path",model_path)
+            self.model_path = model_path
+
+        def load_model(self):
+            device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+            print("load Neural network model")
+            model = onnx.load(self.model_path)
+            self.engine = backend.prepare(model, device='CUDA:0')
+            print("load succeeded!")
+
+        def inference(self):
+            print("prect tulip.jpg")
+            img = io.imread("tulip.jpg")
+            img = np.rollaxis(img, 2, 0) 
+            resize_img = resize(img / 255, (3, 224, 224), anti_aliasing=True)
+            resize_img = resize_img[np.newaxis, :, :, :]
+            flat32_img = resize_img.astype(np.float32)
+
+            class_names = ['rose','sunflower','tulip']
+
+
+            start = time.time()
+            print("tensorrt engine running...")
+            output_data = self.engine.run(flat32_img)[0]
+
+            end = time.time()
+            print(output_data)
+            print(output_data.shape)
+
+            print(class_names[np.argmax(output_data)])
+            print('pred time:',end - start)
+            time.sleep(10)
+
     if __name__ == '__main__':
-        #parent_conn,child_conn = Pipe()
-        #p = Process(target=update_path, args=(child_conn,))
-        #p.start()
-        #model_path = parent_conn.recv()    
-        model_path = "flower-1.0.1.onnx"
-
-        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-        print("load Neural network model")
-        model = onnx.load(model_path)
-        engine = backend.prepare(model, device='CUDA:0')
-        print("load succeeded!")
-
-        #pred
-
-        print("prect sunflower.jpg")
-        img = io.imread("sunflower.jpg")
-        img = np.rollaxis(img, 2, 0) 
-        resize_img = resize(img / 255, (3, 80, 80), anti_aliasing=True)
-        resize_img = resize_img[np.newaxis, :, :, :]
-        flat32_img = resize_img.astype(np.float32)
-
-        class_names = ['daisy', 'dandelion', 'rose', 'sunflower', 'tulip']
-
-
-        start = time.time()
-        print("tensorrt engine running...")
-        output_data = engine.run(flat32_img)[0]
-
-        end = time.time()
-        print(output_data)
-        print(output_data.shape)
-
-        print(class_names[np.argmax(output_data)])
-        print('pred time:',end - start)
+        if(sys.argv[1] == "demo"):
+            path_demo = "flower.onnx"
+            TI = Tensorrt_Inference(path_demo)
+            TI.load_model()
+            TI.inference()
+        else:
+            TI = Tensorrt_Inference(sys.argv[1])
+            TI.load_model()
+            TI.inference()
