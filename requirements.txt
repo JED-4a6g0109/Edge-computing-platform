@@ -1,27 +1,35 @@
 numpy
 scipy
 # Pillow
-cython
-# scikit-image
-# subprocess win10
-subprocess.run
+#cython
+scikit-image
+#subprocess 
+#subprocess.run linux
 # PySide2==5.15.2
 # Keras==2.1.0
 # Keras-Preprocessing==1.1.2
 # tensorfloew==1.15.2
 # matplotlib==3.3.3
 paho-mqtt==1.5.1
+requests
+requests_toolbelt
 Django==3.0.6
 celery==5.0.2
 # opencv-python==4.2.0.34
 djangorestframework==3.12.2
 redis==3.5.3
 
--f https://download.pytorch.org/whl/cu101/torch_stable.html
-torch==1.7.0
--f https://download.pytorch.org/whl/cu101/torch_stable.html
-torch==1.7.0
-torchvision==0.8.1
+#-f https://download.pytorch.org/whl/cu101/torch_stable.html
+#torch==1.7.0
+#-f https://download.pytorch.org/whl/cu101/torch_stable.html
+#torch==1.7.0
+#torchvision==0.8.1
+
+-f https://download.pytorch.org/whl/cu102/torch_stable.html
+torch==1.9.0
+-f https://download.pytorch.org/whl/cu102/torch_stable.html
+torch==1.9.0
+torchvision==0.10.0
 h5py
 onnx
 

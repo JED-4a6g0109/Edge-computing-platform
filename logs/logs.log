@@ -1075,3 +1075,700 @@ FileNotFoundError: [Errno 2] No such file or directory: '/Edge-computing-platfor
 [2021-07-01 01:27:16] INFO [django.server:157] "POST /delete/271 HTTP/1.1" 302 0
 [2021-07-01 01:27:16] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
 [2021-07-01 01:34:41] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-18 15:00:54] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 15:12:21] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 15:12:54] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-18 15:12:54] INFO [django.server:157] "GET /static/css/index.css HTTP/1.1" 200 1390
+[2021-07-18 15:12:55] WARNING [django.request:228] Not Found: /favicon.ico
+[2021-07-18 15:12:55] WARNING [django.server:157] "GET /favicon.ico HTTP/1.1" 404 3097
+[2021-07-18 15:14:51] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/MQTT.py changed, reloading.
+[2021-07-18 15:14:53] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 15:38:33] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/process.py changed, reloading.
+[2021-07-18 15:38:34] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 15:38:40] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/process.py changed, reloading.
+[2021-07-18 15:38:41] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 15:40:13] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/process.py changed, reloading.
+[2021-07-18 15:40:13] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 16:02:26] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/views.py changed, reloading.
+[2021-07-18 16:02:27] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 16:02:36] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/tasks.py changed, reloading.
+[2021-07-18 16:02:37] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 16:03:00] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/tasks.py changed, reloading.
+[2021-07-18 16:03:01] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 16:03:13] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/process.py changed, reloading.
+[2021-07-18 16:03:13] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 16:03:35] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 16:03:41] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-18 16:03:44] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-18 16:03:44] INFO [django.server:157] "GET /static/css/model_form_style.css HTTP/1.1" 200 1788
+[2021-07-18 16:03:44] INFO [django.server:157] "GET /static/js/model_form_main.js HTTP/1.1" 200 2403
+[2021-07-18 16:04:06] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-18 16:04:43] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-07-18 16:04:43] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 7731
+[2021-07-18 16:05:04] INFO [django.server:157] "GET /delete/274 HTTP/1.1" 200 252
+[2021-07-18 16:05:06] INFO [django.server:157] "POST /delete/274 HTTP/1.1" 302 0
+[2021-07-18 16:05:06] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-18 17:22:11] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/process.py changed, reloading.
+[2021-07-18 17:22:13] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 17:22:55] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 17:23:17] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-18 17:23:21] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-18 17:23:21] INFO [django.server:157] "GET /static/css/model_form_style.css HTTP/1.1" 200 1788
+[2021-07-18 17:23:23] INFO [django.server:157] "GET /static/js/model_form_main.js HTTP/1.1" 200 2403
+[2021-07-18 17:24:02] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-18 17:25:04] ERROR [django.request:228] Internal Server Error: /file_upload/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Edge-computing-platform/file_upload/views.py", line 68, in model_form_upload
+    diff_files,upload_files,patch_files,zip_path,tmp_file_path,version = file_rename(group_folder)
+  File "/Edge-computing-platform/file_upload/process.py", line 114, in file_rename
+    model_path = tmp_path + config["file"]
+KeyError: 'file'
+[2021-07-18 17:25:04] ERROR [django.server:157] "POST /file_upload/ HTTP/1.1" 500 73908
+[2021-07-18 17:26:42] INFO [django.utils.autoreload:222] /Edge-computing-platform/file_upload/process.py changed, reloading.
+[2021-07-18 17:26:43] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 17:26:48] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-18 17:26:48] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-18 17:26:49] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 7703
+[2021-07-18 17:26:54] INFO [django.server:157] "GET /delete/275 HTTP/1.1" 200 253
+[2021-07-18 17:26:55] INFO [django.server:157] "POST /delete/275 HTTP/1.1" 302 0
+[2021-07-18 17:26:55] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-18 17:27:06] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-18 17:27:34] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 17:28:00] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-18 17:28:30] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-18 17:29:37] ERROR [django.request:228] Internal Server Error: /file_upload/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Edge-computing-platform/file_upload/views.py", line 68, in model_form_upload
+    diff_files,upload_files,patch_files,zip_path,tmp_file_path,version = file_rename(group_folder)
+  File "/Edge-computing-platform/file_upload/process.py", line 117, in file_rename
+    convert_onnx(model_path,output_path,NCHW)
+  File "/Edge-computing-platform/file_upload/process.py", line 281, in convert_onnx
+    model = torch.load(model_path)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 594, in load
+    return _load(opened_zipfile, map_location, pickle_module, **pickle_load_args)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 853, in _load
+    result = unpickler.load()
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 845, in persistent_load
+    load_tensor(data_type, size, key, _maybe_decode_ascii(location))
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 834, in load_tensor
+    loaded_storages[key] = restore_location(storage, location)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 175, in default_restore_location
+    result = fn(storage, location)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 151, in _cuda_deserialize
+    device = validate_cuda_device(location)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 135, in validate_cuda_device
+    raise RuntimeError('Attempting to deserialize object on a CUDA '
+RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[2021-07-18 17:29:38] ERROR [django.server:157] "POST /file_upload/ HTTP/1.1" 500 126470
+[2021-07-18 17:32:05] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-18 17:32:07] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 7703
+[2021-07-18 17:32:09] INFO [django.server:157] "GET /delete/276 HTTP/1.1" 200 253
+[2021-07-18 17:32:10] INFO [django.server:157] "POST /delete/276 HTTP/1.1" 302 0
+[2021-07-18 17:32:10] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-18 17:33:53] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 17:55:15] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-18 17:55:31] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-18 17:55:33] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-18 17:55:57] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-18 17:57:05] ERROR [django.request:228] Internal Server Error: /file_upload/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Edge-computing-platform/file_upload/views.py", line 68, in model_form_upload
+    diff_files,upload_files,patch_files,zip_path,tmp_file_path,version = file_rename(group_folder)
+  File "/Edge-computing-platform/file_upload/process.py", line 117, in file_rename
+    convert_onnx(model_path,output_path,NCHW)
+  File "/Edge-computing-platform/file_upload/process.py", line 281, in convert_onnx
+    model = torch.load(model_path)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 594, in load
+    return _load(opened_zipfile, map_location, pickle_module, **pickle_load_args)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 853, in _load
+    result = unpickler.load()
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 845, in persistent_load
+    load_tensor(data_type, size, key, _maybe_decode_ascii(location))
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 834, in load_tensor
+    loaded_storages[key] = restore_location(storage, location)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 175, in default_restore_location
+    result = fn(storage, location)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 151, in _cuda_deserialize
+    device = validate_cuda_device(location)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 135, in validate_cuda_device
+    raise RuntimeError('Attempting to deserialize object on a CUDA '
+RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[2021-07-18 17:57:05] ERROR [django.server:157] "POST /file_upload/ HTTP/1.1" 500 126459
+[2021-07-18 17:58:34] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-18 17:58:36] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-19 21:32:04] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-19 21:56:21] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-19 21:56:33] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 7689
+[2021-07-19 21:56:35] WARNING [django.request:228] Not Found: /favicon.ico
+[2021-07-19 21:56:35] WARNING [django.server:157] "GET /favicon.ico HTTP/1.1" 404 3097
+[2021-07-19 21:56:37] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 7689
+[2021-07-19 21:56:42] INFO [django.server:157] "GET /delete/277 HTTP/1.1" 200 252
+[2021-07-19 21:56:43] INFO [django.server:157] "POST /delete/277 HTTP/1.1" 302 0
+[2021-07-19 21:56:43] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-22 22:27:32] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-24 23:00:19] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-24 23:00:33] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-24 23:00:34] WARNING [django.request:228] Not Found: /favicon.ico
+[2021-07-24 23:00:34] WARNING [django.server:157] "GET /favicon.ico HTTP/1.1" 404 3097
+[2021-07-24 23:00:36] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-24 23:00:37] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-24 23:00:37] INFO [django.server:157] "GET /static/css/model_form_style.css HTTP/1.1" 200 1788
+[2021-07-24 23:00:37] INFO [django.server:157] "GET /static/js/model_form_main.js HTTP/1.1" 200 2403
+[2021-07-24 23:02:28] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-24 23:03:48] ERROR [django.request:228] Internal Server Error: /file_upload/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Edge-computing-platform/file_upload/views.py", line 68, in model_form_upload
+    diff_files,upload_files,patch_files,zip_path,tmp_file_path,version = file_rename(group_folder)
+  File "/Edge-computing-platform/file_upload/process.py", line 117, in file_rename
+    convert_onnx(model_path,output_path,NCHW)
+  File "/Edge-computing-platform/file_upload/process.py", line 281, in convert_onnx
+    model = torch.load(model_path)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 594, in load
+    return _load(opened_zipfile, map_location, pickle_module, **pickle_load_args)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 853, in _load
+    result = unpickler.load()
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 845, in persistent_load
+    load_tensor(data_type, size, key, _maybe_decode_ascii(location))
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 834, in load_tensor
+    loaded_storages[key] = restore_location(storage, location)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 175, in default_restore_location
+    result = fn(storage, location)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 151, in _cuda_deserialize
+    device = validate_cuda_device(location)
+  File "/usr/local/lib/python3.7/site-packages/torch/serialization.py", line 135, in validate_cuda_device
+    raise RuntimeError('Attempting to deserialize object on a CUDA '
+RuntimeError: Attempting to deserialize object on a CUDA device but torch.cuda.is_available() is False. If you are running on a CPU-only machine, please use torch.load with map_location=torch.device('cpu') to map your storages to the CPU.
+[2021-07-24 23:03:48] ERROR [django.server:157] "POST /file_upload/ HTTP/1.1" 500 126204
+[2021-07-25 14:18:46] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 14:19:01] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 7689
+[2021-07-25 14:19:01] INFO [django.server:157] "GET /static/css/index.css HTTP/1.1" 200 1390
+[2021-07-25 14:19:03] WARNING [django.request:228] Not Found: /favicon.ico
+[2021-07-25 14:19:03] WARNING [django.server:157] "GET /favicon.ico HTTP/1.1" 404 3102
+[2021-07-25 14:32:17] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 14:41:23] INFO [django.utils.autoreload:222] D:\Edge-computing-platform\App\celery.py changed, reloading.
+[2021-07-25 14:41:33] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 14:42:33] INFO [django.utils.autoreload:222] D:\Edge-computing-platform\App\celery.py changed, reloading.
+[2021-07-25 14:42:44] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 14:44:44] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 14:45:41] INFO [django.utils.autoreload:222] D:\Edge-computing-platform\App\settings.py changed, reloading.
+[2021-07-25 14:45:45] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 14:45:56] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 14:46:58] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 7689
+[2021-07-25 14:46:58] INFO [django.server:157] "GET /static/css/index.css HTTP/1.1" 200 1390
+[2021-07-25 14:47:21] INFO [django.server:157] "GET /delete/278 HTTP/1.1" 200 252
+[2021-07-25 14:47:22] INFO [django.server:157] "POST /delete/278 HTTP/1.1" 302 0
+[2021-07-25 14:47:22] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3176
+[2021-07-25 14:47:25] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 14:47:25] INFO [django.server:157] "GET /static/css/model_form_style.css HTTP/1.1" 200 1788
+[2021-07-25 14:47:25] INFO [django.server:157] "GET /static/js/model_form_main.js HTTP/1.1" 200 2403
+[2021-07-25 14:47:39] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 14:48:17] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-07-25 14:48:17] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 7689
+[2021-07-25 15:05:07] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 7689
+[2021-07-25 15:07:44] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 15:07:54] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8155
+[2021-07-25 15:08:06] INFO [django.server:157] "GET /media/Files/Model/Model-1.0.0.zip HTTP/1.1" 200 517975718
+[2021-07-25 15:08:23] WARNING [django.request:228] Not Found: /media/Files/Model/Model-1.0.0.h5
+[2021-07-25 15:08:23] WARNING [django.server:157] "GET /media/Files/Model/Model-1.0.0.h5 HTTP/1.1" 404 1831
+[2021-07-25 15:20:13] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8137
+[2021-07-25 15:21:08] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8137
+[2021-07-25 15:21:38] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 15:21:41] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8146
+[2021-07-25 15:21:52] INFO [django.server:157] "GET /media/Files/Model/Model-1.0.0.zip HTTP/1.1" 200 517975718
+[2021-07-25 15:22:02] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 15:22:10] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 15:22:55] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-07-25 15:22:55] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10487
+[2021-07-25 15:25:35] INFO [django.server:157] "GET /delete/280 HTTP/1.1" 200 252
+[2021-07-25 15:25:36] INFO [django.server:157] "POST /delete/280 HTTP/1.1" 302 0
+[2021-07-25 15:25:36] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8146
+[2021-07-25 15:26:03] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 15:26:40] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 15:26:50] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 15:26:51] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 15:27:02] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 15:28:05] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-07-25 15:28:05] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10487
+[2021-07-25 15:35:37] INFO [django.server:157] "GET /delete/281 HTTP/1.1" 200 252
+[2021-07-25 15:35:39] INFO [django.server:157] "POST /delete/281 HTTP/1.1" 302 0
+[2021-07-25 15:35:39] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8146
+[2021-07-25 15:35:41] INFO [django.server:157] "GET /delete/279 HTTP/1.1" 200 252
+[2021-07-25 15:35:42] INFO [django.server:157] "POST /delete/279 HTTP/1.1" 302 0
+[2021-07-25 15:35:42] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3185
+[2021-07-25 15:35:42] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 15:35:52] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 15:36:25] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-07-25 15:36:25] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8146
+[2021-07-25 15:36:31] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 15:36:39] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 15:37:04] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-07-25 15:37:04] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10487
+[2021-07-25 17:02:53] INFO [django.server:157] "GET /media/Files/Model/Model-1.0.1.zip HTTP/1.1" 200 464
+[2021-07-25 17:02:56] WARNING [django.request:228] Not Found: /media/Files/Model/Model-1.0.1.patch
+[2021-07-25 17:02:56] WARNING [django.server:157] "GET /media/Files/Model/Model-1.0.1.patch HTTP/1.1" 404 1840
+[2021-07-25 17:03:06] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 17:03:17] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 17:03:43] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-07-25 17:03:43] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 12828
+[2021-07-25 17:05:07] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 12828
+[2021-07-25 17:05:09] INFO [django.server:157] "GET /delete/284 HTTP/1.1" 200 252
+[2021-07-25 17:05:09] INFO [django.server:157] "POST /delete/284 HTTP/1.1" 302 0
+[2021-07-25 17:05:09] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10487
+[2021-07-25 17:05:11] INFO [django.server:157] "GET /delete/283 HTTP/1.1" 200 252
+[2021-07-25 17:05:15] ERROR [django.request:228] Internal Server Error: /delete/283
+Traceback (most recent call last):
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Edge-computing-platform\file_upload\views.py", line 121, in file_delete
+    file.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\base.py", line 938, in delete
+    return collector.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\deletion.py", line 338, in delete
+    sender=model, instance=obj, using=self.using
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in send
+    for receiver in self._live_receivers(sender)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in <listcomp>
+    for receiver in self._live_receivers(sender)
+  File "D:\Edge-computing-platform\file_upload\models.py", line 43, in submission_delete
+    os.remove(files)
+PermissionError: [WinError 32] 程序無法存取檔案，因為檔案正由另一個程序使用。: 'D:\\Edge-computing-platform\\media\\Files\\Model\\Model-1.0.1.zip'
+[2021-07-25 17:05:15] ERROR [django.request:228] Internal Server Error: /delete/283
+Traceback (most recent call last):
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Edge-computing-platform\file_upload\views.py", line 121, in file_delete
+    file.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\base.py", line 938, in delete
+    return collector.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\deletion.py", line 338, in delete
+    sender=model, instance=obj, using=self.using
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in send
+    for receiver in self._live_receivers(sender)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in <listcomp>
+    for receiver in self._live_receivers(sender)
+  File "D:\Edge-computing-platform\file_upload\models.py", line 43, in submission_delete
+    os.remove(files)
+PermissionError: [WinError 32] 程序無法存取檔案，因為檔案正由另一個程序使用。: 'D:\\Edge-computing-platform\\media\\Files\\Model\\Model-1.0.1.zip'
+[2021-07-25 17:05:15] ERROR [django.server:157] "POST /delete/283 HTTP/1.1" 500 99927
+[2021-07-25 17:05:26] ERROR [django.request:228] Internal Server Error: /delete/283
+Traceback (most recent call last):
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Edge-computing-platform\file_upload\views.py", line 121, in file_delete
+    file.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\base.py", line 938, in delete
+    return collector.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\deletion.py", line 338, in delete
+    sender=model, instance=obj, using=self.using
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in send
+    for receiver in self._live_receivers(sender)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in <listcomp>
+    for receiver in self._live_receivers(sender)
+  File "D:\Edge-computing-platform\file_upload\models.py", line 43, in submission_delete
+    os.remove(files)
+PermissionError: [WinError 32] 程序無法存取檔案，因為檔案正由另一個程序使用。: 'D:\\Edge-computing-platform\\media\\Files\\Model\\Model-1.0.1.zip'
+[2021-07-25 17:05:26] ERROR [django.server:157] "POST /delete/283 HTTP/1.1" 500 99927
+[2021-07-25 17:05:28] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10487
+[2021-07-25 17:05:30] INFO [django.server:157] "GET /delete/282 HTTP/1.1" 200 252
+[2021-07-25 17:05:31] INFO [django.server:157] "POST /delete/282 HTTP/1.1" 302 0
+[2021-07-25 17:05:31] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8509
+[2021-07-25 17:05:37] INFO [django.server:157] "GET /delete/283 HTTP/1.1" 200 252
+[2021-07-25 17:05:38] ERROR [django.request:228] Internal Server Error: /delete/283
+Traceback (most recent call last):
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Edge-computing-platform\file_upload\views.py", line 121, in file_delete
+    file.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\base.py", line 938, in delete
+    return collector.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\deletion.py", line 338, in delete
+    sender=model, instance=obj, using=self.using
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in send
+    for receiver in self._live_receivers(sender)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in <listcomp>
+    for receiver in self._live_receivers(sender)
+  File "D:\Edge-computing-platform\file_upload\models.py", line 43, in submission_delete
+    os.remove(files)
+PermissionError: [WinError 32] 程序無法存取檔案，因為檔案正由另一個程序使用。: 'D:\\Edge-computing-platform\\media\\Files\\Model\\Model-1.0.1.zip'
+[2021-07-25 17:05:38] ERROR [django.server:157] "POST /delete/283 HTTP/1.1" 500 99927
+[2021-07-25 17:06:05] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 17:06:19] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8509
+[2021-07-25 17:06:21] INFO [django.server:157] "GET /delete/283 HTTP/1.1" 200 252
+[2021-07-25 17:06:22] ERROR [django.request:228] Internal Server Error: /delete/283
+Traceback (most recent call last):
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Edge-computing-platform\file_upload\views.py", line 121, in file_delete
+    file.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\base.py", line 938, in delete
+    return collector.delete()
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\db\models\deletion.py", line 338, in delete
+    sender=model, instance=obj, using=self.using
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in send
+    for receiver in self._live_receivers(sender)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\dispatch\dispatcher.py", line 175, in <listcomp>
+    for receiver in self._live_receivers(sender)
+  File "D:\Edge-computing-platform\file_upload\models.py", line 43, in submission_delete
+    os.remove(files)
+PermissionError: [WinError 32] 程序無法存取檔案，因為檔案正由另一個程序使用。: 'D:\\Edge-computing-platform\\media\\Files\\Model\\Model-1.0.1.zip'
+[2021-07-25 17:06:22] ERROR [django.server:157] "POST /delete/283 HTTP/1.1" 500 99927
+[2021-07-25 17:14:18] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-25 17:15:47] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8509
+[2021-07-25 17:15:49] WARNING [django.request:228] Not Found: /favicon.ico
+[2021-07-25 17:15:49] WARNING [django.server:157] "GET /favicon.ico HTTP/1.1" 404 3102
+[2021-07-25 17:16:23] INFO [django.server:157] "GET /delete/283 HTTP/1.1" 200 252
+[2021-07-25 17:16:24] INFO [django.server:157] "POST /delete/283 HTTP/1.1" 302 0
+[2021-07-25 17:16:24] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3185
+[2021-07-25 17:16:26] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 17:16:42] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 17:16:59] ERROR [django.request:228] Internal Server Error: /file_upload/
+Traceback (most recent call last):
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Edge-computing-platform\file_upload\views.py", line 45, in model_form_upload
+    diff_files,upload_files,patch_files,zip_path,tmp_file_path,version = file_rename(group_folder)
+  File "D:\Edge-computing-platform\file_upload\process.py", line 121, in file_rename
+    convert_onnx(model_path,output_path,NCHW)
+  File "D:\Edge-computing-platform\file_upload\process.py", line 278, in convert_onnx
+    model = torch.load(model_path)
+  File "D:\anaconda3\envs\Django\lib\site-packages\torch\serialization.py", line 581, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "D:\anaconda3\envs\Django\lib\site-packages\torch\serialization.py", line 230, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "D:\anaconda3\envs\Django\lib\site-packages\torch\serialization.py", line 211, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'D:/Edge-computing-platform/media/documents/flower3.pth'
+[2021-07-25 17:16:59] ERROR [django.server:157] "POST /file_upload/ HTTP/1.1" 500 101312
+[2021-07-25 17:18:55] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 17:18:58] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8164
+[2021-07-25 17:19:00] INFO [django.server:157] "GET /delete/285 HTTP/1.1" 200 253
+[2021-07-25 17:19:01] INFO [django.server:157] "POST /delete/285 HTTP/1.1" 302 0
+[2021-07-25 17:19:01] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3185
+[2021-07-25 17:19:22] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 17:19:33] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 17:20:30] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-07-25 17:20:30] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8164
+[2021-07-25 17:20:38] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 17:20:50] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 17:21:00] ERROR [django.request:228] Internal Server Error: /file_upload/
+Traceback (most recent call last):
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\anaconda3\envs\Django\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Edge-computing-platform\file_upload\views.py", line 45, in model_form_upload
+    diff_files,upload_files,patch_files,zip_path,tmp_file_path,version = file_rename(group_folder)
+  File "D:\Edge-computing-platform\file_upload\process.py", line 121, in file_rename
+    convert_onnx(model_path,output_path,NCHW)
+  File "D:\Edge-computing-platform\file_upload\process.py", line 278, in convert_onnx
+    model = torch.load(model_path)
+  File "D:\anaconda3\envs\Django\lib\site-packages\torch\serialization.py", line 581, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "D:\anaconda3\envs\Django\lib\site-packages\torch\serialization.py", line 230, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "D:\anaconda3\envs\Django\lib\site-packages\torch\serialization.py", line 211, in __init__
+    super(_open_file, self).__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: 'D:/Edge-computing-platform/media/documents/5.pth'
+[2021-07-25 17:21:00] ERROR [django.server:157] "POST /file_upload/ HTTP/1.1" 500 101247
+[2021-07-25 17:22:00] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 17:22:02] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10542
+[2021-07-25 17:22:07] INFO [django.server:157] "GET /delete/287 HTTP/1.1" 200 253
+[2021-07-25 17:22:08] INFO [django.server:157] "POST /delete/287 HTTP/1.1" 302 0
+[2021-07-25 17:22:08] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8164
+[2021-07-25 17:22:45] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-07-25 17:22:56] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-07-25 17:26:40] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-07-25 17:26:40] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10542
+[2021-07-25 17:30:32] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 76388
+[2021-07-25 17:31:12] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 76388
+[2021-07-25 17:31:51] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 76388
+[2021-07-25 17:33:33] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 76388
+[2021-07-30 21:52:35] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-30 21:53:03] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10542
+[2021-07-30 21:53:04] INFO [django.server:157] "GET /static/css/index.css HTTP/1.1" 200 1390
+[2021-07-30 21:53:08] WARNING [django.request:228] Not Found: /favicon.ico
+[2021-07-30 21:53:08] WARNING [django.server:157] "GET /favicon.ico HTTP/1.1" 404 3102
+[2021-07-30 21:53:11] INFO [django.server:157] "GET /delete/288 HTTP/1.1" 200 253
+[2021-07-30 21:53:13] INFO [django.server:157] "POST /delete/288 HTTP/1.1" 302 0
+[2021-07-30 21:53:13] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8164
+[2021-07-30 21:53:16] INFO [django.server:157] "GET /delete/286 HTTP/1.1" 200 253
+[2021-07-30 21:53:17] INFO [django.server:157] "POST /delete/286 HTTP/1.1" 302 0
+[2021-07-30 21:53:17] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3185
+[2021-07-30 22:09:36] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-07-31 16:43:28] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 13:32:16] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 14:39:37] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3185
+[2021-08-01 14:39:37] INFO [django.server:157] "GET /static/css/index.css HTTP/1.1" 200 1390
+[2021-08-01 14:39:43] WARNING [django.request:228] Not Found: /favicon.ico
+[2021-08-01 14:39:43] WARNING [django.server:157] "GET /favicon.ico HTTP/1.1" 404 3102
+[2021-08-01 14:39:45] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 14:39:45] INFO [django.server:157] "GET /static/css/model_form_style.css HTTP/1.1" 200 1788
+[2021-08-01 14:39:45] INFO [django.server:157] "GET /static/js/model_form_main.js HTTP/1.1" 200 2403
+[2021-08-01 14:45:13] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 14:45:59] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 14:45:59] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 14:46:11] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 14:46:15] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 14:46:16] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 14:46:33] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 14:46:45] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 14:46:45] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 14:47:00] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 14:57:28] INFO [django.server:157] "GET /delete/290 HTTP/1.1" 200 253
+[2021-08-01 14:57:30] INFO [django.server:157] "POST /delete/290 HTTP/1.1" 302 0
+[2021-08-01 14:57:30] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 14:58:02] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 14:58:11] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 14:58:29] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 14:58:29] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 14:58:54] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 15:08:43] INFO [django.server:157] "GET /delete/291 HTTP/1.1" 200 253
+[2021-08-01 15:08:45] INFO [django.server:157] "POST /delete/291 HTTP/1.1" 302 0
+[2021-08-01 15:08:45] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 15:08:50] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 15:09:00] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 15:09:18] INFO [django.utils.autoreload:222] D:\Edge-computing-platform\file_upload\models.py changed, reloading.
+[2021-08-01 15:09:20] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 15:09:48] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 15:09:48] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 15:10:00] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:18:18] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 16:18:51] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:19:07] INFO [django.server:157] "GET /delete/292 HTTP/1.1" 200 253
+[2021-08-01 16:19:08] INFO [django.server:157] "POST /delete/292 HTTP/1.1" 302 0
+[2021-08-01 16:19:08] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:19:12] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:19:21] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:19:41] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:19:41] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:19:53] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:20:46] INFO [django.server:157] "GET /delete/293 HTTP/1.1" 200 253
+[2021-08-01 16:20:47] INFO [django.server:157] "POST /delete/293 HTTP/1.1" 302 0
+[2021-08-01 16:20:47] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:20:51] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:21:13] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:21:23] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:21:23] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:21:35] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:25:02] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:25:04] INFO [django.server:157] "GET /delete/294 HTTP/1.1" 200 253
+[2021-08-01 16:25:05] INFO [django.server:157] "POST /delete/294 HTTP/1.1" 302 0
+[2021-08-01 16:25:05] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:29:09] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:29:10] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:29:23] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:29:29] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:29:29] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 13524
+[2021-08-01 16:30:13] INFO [django.utils.autoreload:222] D:\Edge-computing-platform\file_upload\models.py changed, reloading.
+[2021-08-01 16:30:15] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 16:30:18] INFO [django.utils.autoreload:222] D:\Edge-computing-platform\file_upload\models.py changed, reloading.
+[2021-08-01 16:30:20] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 16:30:41] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 16:30:59] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 13524
+[2021-08-01 16:31:10] INFO [django.utils.autoreload:222] D:\Edge-computing-platform\file_upload\models.py changed, reloading.
+[2021-08-01 16:31:12] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 16:31:39] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 16:31:45] INFO [django.server:157] "GET /delete/295 HTTP/1.1" 200 252
+[2021-08-01 16:31:46] INFO [django.server:157] "POST /delete/295 HTTP/1.1" 302 0
+[2021-08-01 16:31:46] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:31:49] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:31:57] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:32:17] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:32:17] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:32:28] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:35:01] INFO [django.server:157] "GET /delete/296 HTTP/1.1" 200 253
+[2021-08-01 16:35:02] INFO [django.server:157] "POST /delete/296 HTTP/1.1" 302 0
+[2021-08-01 16:35:02] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:35:03] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:35:11] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:35:17] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:35:18] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:35:29] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:36:39] INFO [django.server:157] "GET /delete/297 HTTP/1.1" 200 253
+[2021-08-01 16:36:40] INFO [django.server:157] "POST /delete/297 HTTP/1.1" 302 0
+[2021-08-01 16:36:40] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:36:41] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:36:48] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:36:54] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:36:54] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:37:05] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:37:59] INFO [django.server:157] "GET /delete/298 HTTP/1.1" 200 253
+[2021-08-01 16:38:00] INFO [django.server:157] "POST /delete/298 HTTP/1.1" 302 0
+[2021-08-01 16:38:00] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:38:00] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:38:09] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:38:14] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:38:14] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:38:25] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:44:18] INFO [django.server:157] "GET /delete/299 HTTP/1.1" 200 253
+[2021-08-01 16:44:20] INFO [django.server:157] "POST /delete/299 HTTP/1.1" 302 0
+[2021-08-01 16:44:20] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:44:21] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:44:28] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:44:32] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:44:32] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:44:42] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:47:02] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:47:04] INFO [django.server:157] "GET /delete/300 HTTP/1.1" 200 253
+[2021-08-01 16:47:07] INFO [django.server:157] "POST /delete/300 HTTP/1.1" 302 0
+[2021-08-01 16:47:07] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:47:08] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:47:16] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:47:21] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:47:21] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:47:57] INFO [django.server:157] "GET /delete/301 HTTP/1.1" 200 253
+[2021-08-01 16:47:58] INFO [django.server:157] "POST /delete/301 HTTP/1.1" 302 0
+[2021-08-01 16:47:58] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:47:59] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:48:05] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:48:11] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:48:11] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:48:25] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:49:35] INFO [django.server:157] "GET /delete/302 HTTP/1.1" 200 253
+[2021-08-01 16:49:36] INFO [django.server:157] "POST /delete/302 HTTP/1.1" 302 0
+[2021-08-01 16:49:36] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:49:37] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:49:45] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:49:50] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:49:50] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:50:03] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:51:37] INFO [django.server:157] "GET /delete/303 HTTP/1.1" 200 253
+[2021-08-01 16:51:38] INFO [django.server:157] "POST /delete/303 HTTP/1.1" 302 0
+[2021-08-01 16:51:38] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:51:38] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:51:45] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:51:50] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:51:50] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:52:02] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:53:25] INFO [django.server:157] "GET /delete/304 HTTP/1.1" 200 253
+[2021-08-01 16:53:25] INFO [django.server:157] "POST /delete/304 HTTP/1.1" 302 0
+[2021-08-01 16:53:25] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:53:26] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:53:28] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:53:36] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:54:01] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:54:01] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:54:10] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 16:55:46] INFO [django.server:157] "GET /delete/305 HTTP/1.1" 200 253
+[2021-08-01 16:55:47] INFO [django.server:157] "POST /delete/305 HTTP/1.1" 302 0
+[2021-08-01 16:55:47] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 16:55:48] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 16:55:55] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 16:56:05] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 16:56:05] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 16:56:14] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 17:00:51] INFO [django.server:157] "GET /delete/306 HTTP/1.1" 200 253
+[2021-08-01 17:00:52] INFO [django.server:157] "POST /delete/306 HTTP/1.1" 302 0
+[2021-08-01 17:00:52] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 17:03:34] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 17:04:16] INFO [django.server:157] "GET /api/file_upload/ HTTP/1.1" 200 14776
+[2021-08-01 17:04:16] INFO [django.server:157] "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3385
+[2021-08-01 17:04:16] INFO [django.server:157] "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+[2021-08-01 17:04:17] INFO [django.server:157] "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+[2021-08-01 17:04:17] INFO [django.server:157] "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1131
+[2021-08-01 17:04:17] INFO [django.server:157] "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1719
+[2021-08-01 17:04:17] INFO [django.server:157] "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3597
+[2021-08-01 17:04:17] INFO [django.server:157] "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+[2021-08-01 17:04:17] INFO [django.server:157] "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+[2021-08-01 17:04:17] INFO [django.server:157] "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+[2021-08-01 17:04:17] INFO [django.server:157] "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+[2021-08-01 17:04:17] INFO [django.server:157] "GET /static/rest_framework/js/jquery-3.5.1.min.js HTTP/1.1" 200 89476
+[2021-08-01 17:06:00] INFO [django.server:157] "POST /api/file_upload/ HTTP/1.1" 201 184
+[2021-08-01 17:06:09] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10560
+[2021-08-01 17:06:34] WARNING [django.request:228] Not Found: /media/Files/flower/flower-1.0.2.patch
+[2021-08-01 17:06:34] WARNING [django.server:157] "GET /media/Files/flower/flower-1.0.2.patch HTTP/1.1" 404 1846
+[2021-08-01 17:08:09] INFO [django.server:157] "GET /delete/307 HTTP/1.1" 200 253
+[2021-08-01 17:08:10] INFO [django.server:157] "POST /delete/307 HTTP/1.1" 302 0
+[2021-08-01 17:08:10] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 17:09:30] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 17:18:42] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 17:18:53] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 17:19:04] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 17:19:04] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 17:19:17] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 17:19:53] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193271
+[2021-08-01 18:56:52] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 18:56:54] INFO [django.server:157] "GET /delete/308 HTTP/1.1" 200 253
+[2021-08-01 18:56:56] INFO [django.server:157] "POST /delete/308 HTTP/1.1" 302 0
+[2021-08-01 18:56:56] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 19:15:20] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 19:15:23] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 19:15:27] INFO [django.server:157] "GET /delete/289 HTTP/1.1" 200 253
+[2021-08-01 19:15:28] INFO [django.server:157] "POST /delete/289 HTTP/1.1" 302 0
+[2021-08-01 19:15:28] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3185
+[2021-08-01 19:15:47] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 19:16:06] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 19:16:13] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 19:16:13] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 19:18:14] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 19:18:31] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 19:18:40] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 19:18:40] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 19:18:53] INFO [django.server:157] "GET /media/Files/flower/flower-1.0.1.zip HTTP/1.1" 200 8193060
+[2021-08-01 19:32:35] INFO [django.utils.autoreload:598] Watching for file changes with StatReloader
+[2021-08-01 19:32:52] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557
+[2021-08-01 19:32:54] INFO [django.server:157] "GET /delete/310 HTTP/1.1" 200 253
+[2021-08-01 19:32:55] INFO [django.server:157] "POST /delete/310 HTTP/1.1" 302 0
+[2021-08-01 19:32:55] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 19:32:56] INFO [django.server:157] "GET /delete/309 HTTP/1.1" 200 253
+[2021-08-01 19:32:57] INFO [django.server:157] "POST /delete/309 HTTP/1.1" 302 0
+[2021-08-01 19:32:57] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3185
+[2021-08-01 19:34:08] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 3185
+[2021-08-01 19:34:11] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 19:34:23] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 19:34:38] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 19:34:38] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 8200
+[2021-08-01 19:34:43] INFO [django.server:157] "GET /file_upload/ HTTP/1.1" 200 2561
+[2021-08-01 19:34:56] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 200 2667
+[2021-08-01 19:35:01] INFO [django.server:157] "POST /file_upload/ HTTP/1.1" 302 0
+[2021-08-01 19:35:01] INFO [django.server:157] "GET /index/ HTTP/1.1" 200 10557

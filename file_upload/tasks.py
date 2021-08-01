@@ -13,9 +13,10 @@ import shutil
 
 
 #docker linux
-diff_patch_path = "/Edge-computing-platform/hdiff_hpatch/linux/"
+# diff_patch_path = "/Edge-computing-platform/hdiff_hpatch/linux/"
 
-
+#win10
+diff_patch_path = "D:/Edge-computing-platform/hdiff_hpatch/win10/"
 
 @shared_task
 def diff_mqtt_task(*variables):
@@ -29,10 +30,10 @@ def diff_mqtt_task(*variables):
     diff與mqtt任務，傳入值為需要diff、patch的資訊、建立zip路徑、暫存路徑
     """
 
-    diff_files,upload_files,patch_files,zip_path,tmp_file_path = variables
+    diff_files,upload_files,patch_files,zip_path,tmp_file_path,version = variables
     
 
-    if cmp(diff_files,upload_files) != 0:
+    if version != "1.0.0":
         print("working....")
         
         for index in range(len(diff_files)):

@@ -4,10 +4,18 @@ import json
 from .models import Document
 from .process import compression,tmp_files_remove
 
+
 ##
 
 # docker linux
-IP = "172.18.0.3"
+# IP = "172.18.0.3"
+
+#win10
+IP = "127.0.0.1"
+
+
+
+
 PORT = 1883
 
 def MQTT_publisher(zip_files,zip_path):

@@ -16,18 +16,32 @@ import torch.utils.model_zoo as model_zoo
 import torch.onnx
 from torchvision import models   
 
+
+
+# #docker linux
+# media_path = "/Edge-computing-platform/media/"
+# group_path = "/Edge-computing-platform/media/Files/"
+# tmp_path = "/Edge-computing-platform/media/documents/"
+# web_download_path = "http://192.168.50.199:8888/media/Files/"
+
+# diff_patch_path = "/Edge-computing-platform/hdiff_hpatch/linux/"
+
+
 #docker linux
-media_path = "/Edge-computing-platform/media/"
-group_path = "/Edge-computing-platform/media/Files/"
-tmp_path = "/Edge-computing-platform/media/documents/"
+media_path = "D:/Edge-computing-platform/media/"
+group_path = "D:/Edge-computing-platform/media/Files/"
+tmp_path = "D:/Edge-computing-platform/media/documents/"
 web_download_path = "http://192.168.50.199:8888/media/Files/"
 
-diff_patch_path = "/Edge-computing-platform/hdiff_hpatch/linux/"
+diff_patch_path = "D:/Edge-computing-platform/hdiff_hpatch/win10/"
+
+
 name = ""
 file_name = ""
 description = ""
 version = ""
 extension = ""
+
 
 def data_information(dataset):
     """
@@ -78,7 +92,6 @@ def file_rename(group_folder):
     zip_path = group_path + name + '/' + upload_zip
 
 
-    convert = False
 
     diff_files = []
     patch_files = []
@@ -95,35 +108,48 @@ def file_rename(group_folder):
             with open(tmp_path+ 'config.json') as f:
                 config = json.load(f)
 
-  
 
-            # if config["conver_to_onnx"] == "yes":
-            #     model = tmp_path + config["files"]["model"]
-            #     network = tmp_path + config["files"]["network_file"]
-            #     randn_variable =  tmp_path + config["NCHW"]
-            #     convert = True
-    
+            if config["conver_onnx"]["conver"] == "ON":
 
-            for get_file in config["diff"]:
-                dot = get_file.rfind(".")
-                extension = str(get_file[dot:])
+                model_file = config["conver_onnx"]["file"]
+                dot = model_file.rfind(".")
 
+                model_path = tmp_path + model_file
+                NCHW = config["conver_onnx"]["NCHW"]
 
-                old_name = tmp_path + get_file
-                rename =  get_file[:dot] + "-" + version + extension
-                rename_path = tmp_path + rename
+                output_path = group_folder + model_file[:dot] + "-" + version + '.onnx'
+                convert_onnx(model_path,output_path,NCHW)
 
-
-                diff_first_path = group_folder + get_file[:dot] + "-" + "1.0.0" + extension
+                diff_first_path = group_folder + model_file[:dot] + "-" + "1.0.0" + '.onnx'
                 diff_files.append(diff_first_path)
 
-                upload_path = group_folder + get_file[:dot] + "-" + version + extension
+                upload_path = group_folder + model_file[:dot] + "-" + version + '.onnx'
                 upload_files.append(upload_path)
 
-                patch_file_path = group_folder + get_file[:dot] + "-" + version + ".patch"
+                patch_file_path = group_folder + model_file[:dot] + "-" + version + ".patch"
                 patch_files.append(patch_file_path)
 
-                shutil.move(old_name,group_folder + rename)
+            if config["diff"] !=[]:
+                for get_file in config["diff"]:
+                    dot = get_file.rfind(".")
+                    extension = str(get_file[dot:])
+
+
+                    old_name = tmp_path + get_file
+                    rename =  get_file[:dot] + "-" + version + extension
+                    rename_path = tmp_path + rename
+
+
+                    diff_first_path = group_folder + get_file[:dot] + "-" + "1.0.0" + extension
+                    diff_files.append(diff_first_path)
+
+                    upload_path = group_folder + get_file[:dot] + "-" + version + extension
+                    upload_files.append(upload_path)
+
+                    patch_file_path = group_folder + get_file[:dot] + "-" + version + ".patch"
+                    patch_files.append(patch_file_path)
+
+                    shutil.move(old_name,group_folder + rename)
             
             
 
@@ -135,7 +161,7 @@ def file_rename(group_folder):
             
 
 
-            return diff_files,upload_files,patch_files,zip_path,tmp_file_path
+            return diff_files,upload_files,patch_files,zip_path,tmp_file_path,version
         
         else:
             print('not config.json,pleas check!')
@@ -180,6 +206,7 @@ def compression(zip_files,zip_path):
     data_information(context["dataset"])
     files = zip_files
     files.append(tmp_path + 'config.json')
+    files.append(tmp_path + 'label.txt')
     zip_name = name + '-' + version + '.zip'
     zip_web_path = web_download_path + name + '/' + zip_name
     print('zip path',zip_web_path)
@@ -214,7 +241,11 @@ def diff(diif_first,diff_second,patch,count):
     """
 
     print("working" + str(count+1) + "diff")
-    process_path = './hdiffz' +' ' + '' + diif_first + ' ' + diff_second + ' ' + patch + ''
+    #docker linux
+    # process_path = './hdiffz' +' ' + '' + diif_first + ' ' + diff_second + ' ' + patch + ''
+    
+    #win10
+    process_path = 'hdiffz' +' ' + '' + diif_first + ' ' + diff_second + ' ' + patch + ''
     print(process_path)
     subprocess.call(process_path, shell=True, cwd= diff_patch_path)
     print('Processed')
@@ -230,50 +261,35 @@ def cmp(a, b):
 
 
 
-# def import_network(module):
-
-#         # get a handle on the module
-#     mdl = importlib.import_module(module)
-#     # is there an __all__?  if so respect it
-#     if "__all__" in mdl.__dict__:
-#         names = mdl.__dict__["__all__"]
-#     else:
-#         # otherwise we import all names that don't begin with _
-#         names = [x for x in mdl.__dict__ if not x.startswith("_")]
-
-#     # now drag them in
-#     globals().update({k: getattr(mdl, k) for k in names})
 
 
-# def convert_onnx(model_path,randn_variable,version):
+def convert_onnx(model_path,output_path,NCHW):
+    """
+    convet to onnx
+    """
+    output_onnx = output_path
 
-#     image_counts = randn_variable[0]
-#     channel = randn_variable[1]
-#     high = randn_variable[2]
-#     width = randn_variable[3]
-
-
-#     dot = model_path.rfind(".")
-#     extension = str(model_path[dot:])
-#     reextension = str(model_path[:dot])
-
-#     onnx_file  = reextension + '-' + version + ".onnx" 
+    image_counts = NCHW[0]
+    channel = NCHW[1]
+    high = NCHW[2]
+    width = NCHW[3]
 
 
-#     model = torch.load(model_path)
-#     model.eval()
-#     print('Finished loading model!')
-#     print(model)
-#     device = torch.device("cuda")
-#     model = model.to(device)
+    model = torch.load(model_path)
+    model.eval()
+    print('Finished loading model!')
+    print(model)
+    device = torch.device("cuda")
+    model = model.to(device)
 
-#     # ------------------------ export -----------------------------
-#     output_onnx = onnx_file
+    # ------------------------ export -----------------------------
 
-#     print("==> Exporting model to ONNX format at '{}'".format(output_onnx))
-#     input_names = ["input0"]
-#     output_names = ["output0"]
-#     inputs = torch.randn(image_counts, channel, high, width).to(device)
+    print("==> Exporting model to ONNX format at '{}'".format(output_onnx))
+    input_names = ["input0"]
+    output_names = ["output0"]
+    inputs = torch.randn(image_counts, channel, high, width).to(device)
 
-#     torch_out = torch.onnx._export(model, inputs, output_onnx, export_params=True, verbose=False,
-#                                 input_names=input_names, output_names=output_names)
+    torch_out = torch.onnx._export(model, inputs, output_onnx, export_params=True, verbose=False,
+                                input_names=input_names, output_names=output_names)
+
+    print('conver to onnx done!')

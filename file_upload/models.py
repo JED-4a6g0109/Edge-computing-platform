@@ -32,7 +32,7 @@ class Document(models.Model):
 def submission_delete(sender, instance, **kwargs):
     removes = []
     if instance.document:
-        model = instance.document.path.replace('zip', 'h5')
+        model = instance.document.path.replace('zip', 'onnx')
         patch = instance.document.path.replace('zip', 'patch')
         upload_file = instance.document.path
         removes.append(model)

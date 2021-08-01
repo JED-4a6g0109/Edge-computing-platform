@@ -48,7 +48,7 @@
                       <th>版本</th>
                       <th>說明</th>
                       <th>上傳時間</th>
-                      <th>下載</th>
+                      <!-- <th>下載</th> -->
                       <th>補丁</th>
                       <th>壓縮檔</th>
                   </tr> 
@@ -136,13 +136,15 @@
                           </td>
 
                     
-                          <td><div>Model</div>
+                          <!-- <td><div>Model</div>
                             <table>
                               <tr>
                                 <td id="demo-{{ value.0.title }}" class="collapse multi-collapse">
                                   {% for i in value%}
-                                  <!-- docker linux -->
+                                  docker linux
                                   <div><a href="http://127.0.0.1:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.h5" download>{{i.version}}</a>
+                                  win10
+                                  <div><a href="http://192.168.50.199:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.h5" download>{{i.version}}</a>
 
                                   {% endfor %} 
                                  </td>
@@ -150,7 +152,7 @@
                             </table>
 
                             
-                          </td>
+                          </td> -->
 
                           <td><div>Patch</div>
                             <table>
@@ -159,7 +161,10 @@
                                   {% for i in value%}
                                     {% if i.version != "1.0.0" %}
                                     <!-- docker linux -->
-                                    <div><a href="http://127.0.0.1:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}</a>
+                                    <!-- <div><a href="http://127.0.0.1:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}</a> -->
+                                    
+                                    <!-- win10 -->
+                                    <div><a href="http://192.168.50.199:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.patch" download>{{i.version}}</a>
                                         {% else %}
                                       <div>Not Patch</a>
                                     {% endif %}
@@ -178,7 +183,11 @@
                               <tr>
                                 <td id="demo-{{ value.0.title }}" class="collapse multi-collapse">
                                   {% for i in value%}
-                                    <div><a href="http://127.0.0.1:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.zip" download>{{i.version}}.zip</a>
+                                  <!-- docker linux -->
+                                  <!-- <div><a href="http://127.0.0.1:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.zip" download>{{i.version}}.zip</a> -->
+                                  
+                                  <!-- win10 -->
+                                  <div><a href="http://192.168.50.199:8888/media/Files/{{i.title}}/{{i.title}}-{{i.version}}.zip" download>{{i.version}}.zip</a>
 
 
                                   {% endfor %} 
