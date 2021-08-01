@@ -17,7 +17,14 @@ Youtube
 https://www.youtube.com/watch?v=ISRpf_gjXcU&ab_channel=%E6%B4%AA%E5%B4%87%E6%81%A9
 
 ## 自動部屬影片實作
+
+### window10
 https://www.youtube.com/watch?v=13-eup1sNsA&feature=youtu.be&ab_channel=%E6%B4%AA%E5%B4%87%E6%81%A9
+
+### Jetson nano
+
+https://www.youtube.com/watch?v=1VxNYA05ILc&feature=youtu.be&ab_channel=%E6%B4%AA%E5%B4%87%E6%81%A9
+
 
 ## 運用工具與出處
  - Django開發Server平台
